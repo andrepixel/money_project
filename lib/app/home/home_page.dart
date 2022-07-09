@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/app/home/widgets/bottom_navigation_bar_widget.dart';
 import 'package:money_project/app/home/widgets/sub_menu_text_tips_widget.dart';
 import 'package:money_project/app/home/widgets/text_title_update_widget.dart';

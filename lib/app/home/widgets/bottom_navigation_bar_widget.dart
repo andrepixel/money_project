@@ -16,20 +16,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
         BottomNavigationBarItem(
           icon: GestureDetector(
             onTap: () => Modular.to.navigate("/"),
-            child: Icon(Icons.public),
-          ),
-          label: 'Notícias',
-        ),
-        BottomNavigationBarItem(
-          icon: GestureDetector(
-            onTap: () => Modular.to.navigate("/"),
-            child: Icon(Icons.newspaper),
-          ),
-          label: 'Artigos',
-        ),
-        BottomNavigationBarItem(
-          icon: GestureDetector(
-            onTap: () => Modular.to.navigate("/"),
             child: Icon(
               Icons.add_box,
             ),
@@ -48,6 +34,20 @@ class BottomNavigationBarWidget extends StatelessWidget {
         BottomNavigationBarItem(
           icon: GestureDetector(
             onTap: () => Modular.to.navigate("/"),
+            child: Icon(Icons.public),
+          ),
+          label: 'Notícias',
+        ),
+        BottomNavigationBarItem(
+          icon: GestureDetector(
+            onTap: () => Modular.to.navigate("/"),
+            child: Icon(Icons.newspaper),
+          ),
+          label: 'Artigos',
+        ),
+        BottomNavigationBarItem(
+          icon: GestureDetector(
+            onTap: () => Modular.to.navigate("/settings"),
             child: Icon(Icons.settings),
           ),
           label: 'Configuração',
