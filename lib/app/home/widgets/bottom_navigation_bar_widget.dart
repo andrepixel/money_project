@@ -40,14 +40,14 @@ class BottomNavigationBarWidget extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
-            onTap: () => Modular.to.navigate("/"),
+            onTap: () => Modular.to.navigate("/articles/"),
             child: Icon(Icons.newspaper),
           ),
           label: 'Artigos',
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
-            onTap: () => Modular.to.navigate("/settings"),
+            onTap: () => Modular.to.navigate("/settings/"),
             child: Icon(Icons.settings),
           ),
           label: 'Configuração',
