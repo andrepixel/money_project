@@ -61,59 +61,88 @@ class _ArticlePageState extends State<ArticlePage> {
                                 ),
                               )
                             : controller.listArticle[idParsed][index].first
-                                    .contains("[title]")
+                                    .contains("[subImage]")
                                 ? Padding(
                                     padding: const EdgeInsets.symmetric(
-                                      vertical: 15,
-                                      horizontal: 5,
+                                      horizontal: 8,
                                     ),
-                                    child: Text(
-                                      controller
-                                          .listArticle[idParsed][index].first
-                                          .substring(7),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ) : controller.listArticle[idParsed][index].first
-                                    .contains("[subTitle]")
-                                ? Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 15,
-                                      horizontal: 5,
-                                    ),
-                                    child: Text(
-                                      controller
-                                          .listArticle[idParsed][index].first
-                                          .substring(10),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
+                                    child: SizedBox(
+                                      height: 170,
+                                      width: 250,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(25),
+                                        child: Image.asset(
+                                          controller
+                                              .listArticle[idParsed][index]
+                                              .first
+                                              .substring(10),
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
                                     ),
                                   )
                                 : controller.listArticle[idParsed][index].first
-                                        .contains("[text]")
+                                        .contains("[title]")
                                     ? Padding(
                                         padding: const EdgeInsets.symmetric(
-                                          vertical: 5,
-                                          horizontal: 10,
+                                          vertical: 15,
+                                          horizontal: 5,
                                         ),
                                         child: Text(
                                           controller
                                               .listArticle[idParsed][index]
                                               .first
-                                              .substring(6),
-                                          textAlign: TextAlign.justify,
+                                              .substring(7),
+                                          textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
                                           ),
                                         ),
                                       )
-                                    : SizedBox.shrink();
+                                    : controller
+                                            .listArticle[idParsed][index].first
+                                            .contains("[subTitle]")
+                                        ? Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 15,
+                                              horizontal: 5,
+                                            ),
+                                            child: Text(
+                                              controller
+                                                  .listArticle[idParsed][index]
+                                                  .first
+                                                  .substring(10),
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          )
+                                        : controller
+                                                .listArticle[idParsed][index]
+                                                .first
+                                                .contains("[text]")
+                                            ? Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  vertical: 5,
+                                                  horizontal: 10,
+                                                ),
+                                                child: Text(
+                                                  controller
+                                                      .listArticle[idParsed]
+                                                          [index]
+                                                      .first
+                                                      .substring(6),
+                                                  textAlign: TextAlign.justify,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                              )
+                                            : SizedBox.shrink();
                       },
                     ),
                   ],
