@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:money_project/app/settings/about_page.dart';
 import 'package:money_project/core/commons/widgets/component_pop_widget.dart';
 
 class MenuSettingsPage extends StatelessWidget {
