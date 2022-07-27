@@ -14,31 +14,33 @@ class ComponentPopWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      color: Colors.transparent,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-            ),
-            child: GestureDetector(
-              onTap: () => Modular.to.navigate(path),
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
+    return SafeArea(
+      child: Container(
+        height: 50,
+        color: Colors.transparent,
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+              ),
+              child: GestureDetector(
+                onTap: () => Modular.to.navigate(path),
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
               ),
             ),
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 10,
+            Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 10,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

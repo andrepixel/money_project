@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:money_project/app/articles/articles_module.dart';
 import 'package:money_project/app/home/home_page.dart';
+import 'package:money_project/app/notices/notices_module.dart';
 import 'package:money_project/app/settings/settings_module.dart';
 
 class HomeModule extends Module {
@@ -15,6 +17,14 @@ class HomeModule extends Module {
     ModuleRoute(
       "/settings/",
       module: SettingsModule(),
+    ),
+     ModuleRoute(
+      "/articles/",
+      module: ArticlesModule(),
+    ),
+     ModuleRoute(
+      "/notices/",
+      module: NoticesModule(),
     )
   ];
 }
