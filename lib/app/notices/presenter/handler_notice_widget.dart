@@ -25,42 +25,49 @@ class HandlerNoticeWidget extends StatelessWidget {
             Uri.parse(noticeModel.url),
           );
         },
-        child: Container(
-          height: 350,
+        child: SizedBox(
+          height: noticeModel.urlToImage == "null" ? 150 : 300,
           width: 500,
-          color: Colors.blue,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                ),
-                child: Image.network(
-                  noticeModel.urlToImage,
-                  fit: BoxFit.contain,
-                ),
-              ),
-              Divider(
-                color: Colors.transparent,
-              ),
+              noticeModel.urlToImage == "null"
+                  ? SizedBox.shrink()
+                  : SizedBox(
+                      height: 150,
+                      width: 360,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        child: Image.network(
+                          noticeModel.urlToImage,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
               Container(
-                height: 150,
+                height: noticeModel.title.length < 80 ? 100 : 140,
                 width: 360,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.only(
-                    bottomEnd: Radius.circular(20),
-                    bottomStart: Radius.circular(20),
-                  ),
+                  borderRadius: noticeModel.urlToImage == "null"
+                      ? BorderRadiusDirectional.circular(20)
+                      : BorderRadiusDirectional.only(
+                          bottomEnd: Radius.circular(20),
+                          bottomStart: Radius.circular(20),
+                        ),
                   color: Color(
                     (Random().nextDouble() * 0xFFFFFF).toInt(),
-                  ).withOpacity(0.6),
+                  ).withOpacity(0.2),
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 8.0,
+                      ),
                       child: Text(
                         "fonte: ${noticeModel.name}",
                         style: TextStyle(

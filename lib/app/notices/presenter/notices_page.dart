@@ -31,8 +31,16 @@ class _NoticesPageState extends ModularState<NoticesPage, NoticeController> {
                 return FutureBuilder(
                   future: controller.getNotices().then((value) => value[index]),
                   builder: (context, snapshot) => snapshot.data != null
-                      ? HandlerNoticeWidget(
-                          noticeModel: snapshot.data as NoticeModel)
+                      ? Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical:
+                                (snapshot.data as NoticeModel).title.length < 80
+                                    ? 10
+                                    : 20,
+                          ),
+                          child: HandlerNoticeWidget(
+                              noticeModel: snapshot.data as NoticeModel),
+                        )
                       : SizedBox.shrink(),
                 );
               },

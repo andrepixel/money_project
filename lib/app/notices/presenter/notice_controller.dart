@@ -6,7 +6,7 @@ class NoticeController {
 
   Future<List<NoticeModel>> getNotices() async {
     final list = await repository.getHTTP();
-
+   
     return list;
   }
 }
