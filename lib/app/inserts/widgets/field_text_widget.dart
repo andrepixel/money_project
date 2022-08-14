@@ -5,6 +5,7 @@ class FieldTextWidget extends StatefulWidget {
   final String nameField;
   final bool typeMoney;
   ValueNotifier<String> variableController;
+  ValueNotifier<bool> isStateInsertionIsTrue;
   bool isTypeValue;
 
   FieldTextWidget({
@@ -12,6 +13,7 @@ class FieldTextWidget extends StatefulWidget {
     required this.nameField,
     required this.typeMoney,
     required this.variableController,
+    required this.isStateInsertionIsTrue,
     this.isTypeValue = false,
   }) : super(key: key);
 
@@ -54,6 +56,12 @@ class _FieldTextWidgetState extends State<FieldTextWidget> {
                   widget.isTypeValue == true ? TextInputType.number : null,
               onChanged: (value) {
                 widget.variableController.value = value;
+
+                if (widget.isStateInsertionIsTrue.value == true) {
+                  textEditingController.clear();
+
+                  widget.isStateInsertionIsTrue.value = false;
+                }
               },
               decoration: InputDecoration(
                 hintStyle: TextStyle(

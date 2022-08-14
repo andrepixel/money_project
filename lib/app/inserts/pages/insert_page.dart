@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/app/inserts/widgets/button_with_icon_widget.dart';
 import 'package:money_project/app/inserts/widgets/field_multiple_choices_widget.dart';
 import 'package:money_project/app/inserts/widgets/field_text_widget.dart';
-import 'package:money_project/app/inserts/widgets/insert_controller.dart';
+import 'package:money_project/app/inserts/insert_controller.dart';
 import 'package:money_project/core/commons/widgets/component_pop_widget.dart';
 
 class InsertPage extends StatefulWidget {
@@ -55,20 +55,32 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
               color: Colors.transparent,
               height: 7,
             ),
-            FieldTextWidget(
-              nameField: "Nome da inserção",
-              typeMoney: false,
-              variableController: controller.itemName,
+            ValueListenableBuilder(
+              valueListenable: controller.stateInsertion,
+              builder: (context, value, child) {
+                return FieldTextWidget(
+                  nameField: "Nome da inserção",
+                  typeMoney: false,
+                  variableController: controller.itemName,
+                  isStateInsertionIsTrue: controller.stateInsertion,
+                );
+              },
             ),
             Divider(
               color: Colors.transparent,
               height: 7,
             ),
-            FieldTextWidget(
-              nameField: "Valor da inserção",
-              typeMoney: true,
-              variableController: controller.itemValue,
-              isTypeValue: true,
+            ValueListenableBuilder(
+              valueListenable: controller.stateInsertion,
+              builder: (context, value, child) {
+                return FieldTextWidget(
+                  nameField: "Valor da inserção",
+                  typeMoney: true,
+                  variableController: controller.itemValue,
+                  isTypeValue: true,
+                  isStateInsertionIsTrue: controller.stateInsertion,
+                );
+              },
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -85,35 +97,36 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ButtonWithIconWidget(
-                            icon: Icons.verified,
-                            label: "Inserir",
-                            colorButton: Colors.grey.shade200,
-                            colorIcon: Colors.yellow.shade900,
-                            colorLabel: Colors.yellow.shade900,
-                            myFunction: () => controller.database.insertData(
-                              year: controller.year.value,
-                              month: controller.month.value,
-                              type: controller.type.value,
-                              itemName: controller.itemName.value,
-                              itemValue: controller.itemValue.value,
-                            ),
-                          ),
-                          ButtonWithIconWidget(
                             icon: Icons.list,
                             label: "Listar",
                             colorButton: Colors.grey.shade200,
                             colorIcon: Colors.black87,
                             colorLabel: Colors.black87,
-                            myFunction: () => controller.database.getData(
-                              year: controller.year.value,
-                            ),
+                            myFunction: () =>
+                                Modular.to.pushNamed("/listInserts/"),
                           ),
+                          ButtonWithIconWidget(
+                              icon: Icons.verified,
+                              label: "Inserir",
+                              colorButton: Colors.grey.shade200,
+                              colorIcon: Colors.yellow.shade900,
+                              colorLabel: Colors.yellow.shade900,
+                              myFunction: () => controller.insertData()),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          ButtonWithIconWidget(
+                            icon: Icons.remove_circle,
+                            label: "Remover",
+                            colorButton: Colors.grey.shade200,
+                            colorIcon: Colors.red.shade500,
+                            colorLabel: Colors.red.shade500,
+                            myFunction: () =>
+                                Modular.to.pushNamed("/listRemoveInserts/"),
+                          ),
                           ButtonWithIconWidget(
                             icon: Icons.save,
                             label: "Salvar",
@@ -126,16 +139,6 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                               type: controller.type.value,
                               itemName: controller.itemName.value,
                               itemValue: controller.itemValue.value,
-                            ),
-                          ),
-                          ButtonWithIconWidget(
-                            icon: Icons.remove_circle,
-                            label: "Remover",
-                            colorButton: Colors.grey.shade200,
-                            colorIcon: Colors.red.shade500,
-                            colorLabel: Colors.red.shade500,
-                            myFunction: () => controller.database.removeData(
-                              year: controller.year.value,
                             ),
                           ),
                         ],
