@@ -19,7 +19,7 @@ class AboutPage extends StatelessWidget {
               left: 8,
             ),
             child: Container(
-              height: 280,
+              height: 310,
               width: 287,
               decoration: BoxDecoration(
                 color: Color(Colors.grey.shade200.value),

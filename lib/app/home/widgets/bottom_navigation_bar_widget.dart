@@ -33,7 +33,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
-            onTap: () => Modular.to.navigate("/"),
+            onTap: () => Modular.to.navigate("/notices/"),
             child: Icon(Icons.public),
           ),
           label: 'Notícias',

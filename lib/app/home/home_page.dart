@@ -18,50 +18,52 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 12,
-                horizontal: 20,
+                horizontal: 60,
               ),
-              child: Container(
-                height: 220,
-                width: 287,
-                decoration: BoxDecoration(
-                  color: Color(Colors.grey.shade300.value),
-                  borderRadius: const BorderRadius.horizontal(
-                    left: Radius.circular(40),
-                    right: Radius.circular(40),
+              child: SafeArea(
+                child: Container(
+                  height: 220,
+                  width: 287,
+                  decoration: BoxDecoration(
+                    color: Color(Colors.grey.shade300.value),
+                    borderRadius: const BorderRadius.horizontal(
+                      left: Radius.circular(40),
+                      right: Radius.circular(40),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 25,
-                    left: 30,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextTitleUpdateWidget(
-                        title: "O que há de novo?",
-                        subTitle: "Versão 1.0.0",
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextTopicUpdateWidget(
-                            topic: [
-                              ["Inserção de menus"],
-                            ],
-                            subTopic: [
-                              [
-                                "Notícias",
-                                "Artigos",
-                                "Inserção",
-                                "Visualização",
-                                "Configuração",
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 25,
+                      left: 30,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextTitleUpdateWidget(
+                          title: "O que há de novo?",
+                          subTitle: "Versão 1.0.0",
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextTopicUpdateWidget(
+                              topic: [
+                                ["Inserção de menus"],
                               ],
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                              subTopic: [
+                                [
+                                  "Notícias",
+                                  "Artigos",
+                                  "Inserção",
+                                  "Visualização",
+                                  "Configuração",
+                                ],
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
