@@ -50,41 +50,65 @@ class _ListInsertsPageState
               colorButton: Colors.grey.shade200,
               colorIcon: Colors.black87,
               colorLabel: Colors.black87,
-              myFunction: () => controller.getData(
-                isTrue: controller.isTrue,
-              ),
+              myFunction: () => controller.getData(isTrue: controller.isTrue),
             ),
             Padding(
               padding: const EdgeInsets.only(
                 top: 10,
               ),
               child: Container(
-                width: 340,
+                width: 330,
                 height: 1000,
                 decoration: BoxDecoration(
-                  color: Colors.red.shade100,
+                  color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child:ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 200,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return FutureBuilder(
-                            future:  controller.isTrue.value == true
-                    ? controller
-                                .listInserts(
-                                  year: controller.year,
-                                  month: controller.month,
-                                )
-                                .then((value) => value[index]): null,
-                            builder: (context, snapshot) =>
-                                snapshot.hasData == true
-                                    ? Text("${snapshot.data.toString()}\n")
-                                    : SizedBox.shrink(),
-                          );
-                        },
-                      )
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 200,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return ValueListenableBuilder(
+                      valueListenable: controller.isTrue,
+                      builder: (context, value, child) {
+                        return FutureBuilder(
+                          future: controller
+                              .listInserts(
+                                year: controller.year,
+                                month: controller.month,
+                              )
+                              .then((value) => value[index]),
+                          builder: (context, snapshot) =>
+                              snapshot.hasData == true
+                                  ? Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 25,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            "${controller.month.value}\n",
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            "${snapshot.data.toString()}\n",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : SizedBox.shrink(),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ],

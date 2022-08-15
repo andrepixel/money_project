@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -81,6 +82,17 @@ class InsertController {
     jsonParsed.forEach((key, value) {
       key == month.value ? jsonList.add(value) : null;
     });
+
+    for (var element in jsonList) {
+      String newElement = element.toString();
+      
+      newElement = newElement.replaceAll("{", "");
+      newElement = newElement.replaceAll("}", "");
+      newElement = newElement.replaceAll(",", "\n");
+
+      jsonList.remove(element);
+      jsonList.add(newElement);
+    }
 
     return jsonList;
   }

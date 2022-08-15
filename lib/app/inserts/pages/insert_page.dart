@@ -89,22 +89,12 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
               ),
               child: IntrinsicHeight(
                 child: SizedBox(
-                  width: 350,
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ButtonWithIconWidget(
-                            icon: Icons.list,
-                            label: "Listar",
-                            colorButton: Colors.grey.shade200,
-                            colorIcon: Colors.black87,
-                            colorLabel: Colors.black87,
-                            myFunction: () =>
-                                Modular.to.pushNamed("/listInserts/"),
-                          ),
                           ButtonWithIconWidget(
                               icon: Icons.verified,
                               label: "Inserir",
@@ -119,6 +109,15 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ButtonWithIconWidget(
+                            icon: Icons.list,
+                            label: "Listar",
+                            colorButton: Colors.grey.shade200,
+                            colorIcon: Colors.black87,
+                            colorLabel: Colors.black87,
+                            myFunction: () =>
+                                Modular.to.pushNamed("/listInserts/"),
+                          ),
+                          ButtonWithIconWidget(
                             icon: Icons.remove_circle,
                             label: "Remover",
                             colorButton: Colors.grey.shade200,
@@ -126,20 +125,6 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                             colorLabel: Colors.red.shade500,
                             myFunction: () =>
                                 Modular.to.pushNamed("/listRemoveInserts/"),
-                          ),
-                          ButtonWithIconWidget(
-                            icon: Icons.save,
-                            label: "Salvar",
-                            colorButton: Colors.grey.shade200,
-                            colorIcon: Colors.green.shade500,
-                            colorLabel: Colors.green.shade500,
-                            myFunction: () => controller.database.insertData(
-                              year: controller.year.value,
-                              month: controller.month.value,
-                              type: controller.type.value,
-                              itemName: controller.itemName.value,
-                              itemValue: controller.itemValue.value,
-                            ),
                           ),
                         ],
                       )
