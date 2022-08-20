@@ -13,33 +13,36 @@ class Database extends ChangeNotifier {
   });
 
   void openDatabase() async {
-    sharedPreferences.setString("2022",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
-    sharedPreferences.setString("2023",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
-    sharedPreferences.setString("2024",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
-    sharedPreferences.setString("2025",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
-    sharedPreferences.setString("2026",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
-    sharedPreferences.setString("2027",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
-    sharedPreferences.setString("2028",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
-    sharedPreferences.setString("2029",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
-    sharedPreferences.setString("2030",
-        '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+    if (sharedPreferences.containsKey("2022")) {
+    } else {
+      sharedPreferences.setString("2022",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+      sharedPreferences.setString("2023",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+      sharedPreferences.setString("2024",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+      sharedPreferences.setString("2025",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+      sharedPreferences.setString("2026",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+      sharedPreferences.setString("2027",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+      sharedPreferences.setString("2028",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+      sharedPreferences.setString("2029",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+      sharedPreferences.setString("2030",
+          '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
+    }
   }
 
-  void insertData({
+  Future<void> insertData({
     required String year,
     required String month,
     required String type,
     required String itemName,
     required String itemValue,
-  }) {
+  }) async {
     if (itemName.isEmpty || itemValue.isEmpty) {}
 
     var values = sharedPreferences.getString(year) ?? "";
@@ -60,15 +63,14 @@ class Database extends ChangeNotifier {
 
     values = values.replaceAll(',},', '},');
 
-    sharedPreferences.remove(year);
-    sharedPreferences.setString(year, values);
+    await sharedPreferences.remove(year);
+    await sharedPreferences.setString(year, values);
   }
 
   String getData({required String year}) {
     String text = sharedPreferences.getString(year) ?? "";
-    
+
     return text;
-    
   }
 
   void removeData({

@@ -87,17 +87,32 @@ class _ListInsertsPageState
                                       child: Column(
                                         children: [
                                           Text(
-                                            "${controller.month.value}\n",
+                                            "${controller.month.value} - ${controller.year.value}",
                                             style: TextStyle(
                                               fontSize: 30,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          Text(
-                                            "${snapshot.data.toString()}\n",
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 20,
+                                              vertical: 10,
+                                            ),
+                                            child: Container(
+                                              color: Colors.grey,
+                                              height: 1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 10,
+                                            ),
+                                            child: Text(
+                                              "${snapshot.data.toString()}\n",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ],

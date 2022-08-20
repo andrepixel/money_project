@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 
@@ -47,9 +48,10 @@ class InsertController {
   ValueNotifier<String> itemValue = ValueNotifier("0");
   ValueNotifier<bool> stateInsertion = ValueNotifier(false);
   ValueNotifier<bool> isTrue = ValueNotifier(false);
+  ValueNotifier<bool> isRemove = ValueNotifier(false);
 
-  void insertData() {
-    database.insertData(
+  void insertData() async {
+    await database.insertData(
       year: year.value,
       month: month.value,
       type: type.value,
@@ -63,9 +65,14 @@ class InsertController {
   void getData({
     required ValueNotifier<bool> isTrue,
   }) {
-    print("--- 1 ${isTrue.value}");
     isTrue.value = !isTrue.value;
-    print("--- 2 ${isTrue.value}");
+  }
+
+  void removeData() {
+    if (isRemove.value == false) {
+      database.removeData(year: year.value, month: month.value);
+      isRemove.value = true;
+    }
   }
 
   Future<List> listInserts({
@@ -85,7 +92,7 @@ class InsertController {
 
     for (var element in jsonList) {
       String newElement = element.toString();
-      
+
       newElement = newElement.replaceAll("{", "");
       newElement = newElement.replaceAll("}", "");
       newElement = newElement.replaceAll(",", "\n");

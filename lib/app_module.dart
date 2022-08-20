@@ -16,7 +16,7 @@ class AppModule extends Module {
 
   @override
   List<Bind> get binds => [
-        Bind.singleton(
+        Bind.factory(
           (i) => Database(
             sharedPreferences: sharedPreferences,
           ),
