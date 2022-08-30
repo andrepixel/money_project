@@ -1,16 +1,20 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:money_project/app/inserts/widgets/field_multiple_choices_widget.dart';
+
 import 'package:money_project/app/outputs/output_controller.dart';
 import 'package:money_project/app/outputs/widgets/bottom_title_widget.dart';
 import 'package:money_project/app/outputs/widgets/left_title_widget.dart';
 import 'package:money_project/app/outputs/widgets/list_fl_spot.dart';
-import 'package:money_project/core/commons/constants.dart';
 import 'package:money_project/core/commons/widgets/component_pop_widget.dart';
 
 class OutputPage extends StatefulWidget {
-  const OutputPage({Key? key}) : super(key: key);
+  String isOutput;
+
+  OutputPage({
+    Key? key,
+    required this.isOutput,
+  }) : super(key: key);
 
   @override
   State<OutputPage> createState() => _OutputPageState();
@@ -19,7 +23,13 @@ class OutputPage extends StatefulWidget {
 class _OutputPageState extends ModularState<OutputPage, OutputController> {
   @override
   void initState() {
-    controller.getMonths();
+    widget.isOutput = "false";
+    if (widget.isOutput == "false") {
+      controller.getMonthsInsert();
+    } else {
+      controller.getMonthsOutput();
+    }
+
     super.initState();
   }
 
@@ -38,41 +48,49 @@ class _OutputPageState extends ModularState<OutputPage, OutputController> {
           children: [
             ComponentPopWidget(
               title: "Output",
-              path: "/",
+              path: "/outputs/",
             ),
             ValueListenableBuilder(
               valueListenable: controller.year,
               builder: (context, value, child) {
-                return FieldMultipleChoicesWidget(
-                  initialValue: "2022",
-                  listObjects: years,
-                  nameField: "Selecione o Ano",
-                  variableController: controller.year,
-                );
-              },
-            ),
-            InteractiveViewer(
-              boundaryMargin: EdgeInsets.all(80),
-              minScale: 0.5,
-              maxScale: 3,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 150,
-                  ),
-                  child: SizedBox(
-                    height: 400,
-                    width: 350,
-                    child: ValueListenableBuilder(
-                      valueListenable: controller.year,
-                      builder: (context, value, child) {
-                        return LineChart(
+                return InteractiveViewer(
+                  boundaryMargin: EdgeInsets.all(80),
+                  minScale: 0.5,
+                  maxScale: 2,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 150,
+                      ),
+                      child: SizedBox(
+                        height: 400,
+                        width: 350,
+                        child: LineChart(
                           LineChartData(
                             lineTouchData: LineTouchData(
                               enabled: true,
                               handleBuiltInTouches: true,
+                              touchTooltipData: LineTouchTooltipData(
+                                tooltipBgColor: Colors.grey,
+                                tooltipRoundedRadius: 8,
+                                getTooltipItems:
+                                    (List<LineBarSpot> lineBarsSpot) {
+                                  return lineBarsSpot.map(
+                                    (lineBarSpot) {
+                                      return LineTooltipItem(
+                                        lineBarSpot.y.toString(),
+                                        const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      );
+                                    },
+                                  ).toList();
+                                },
+                              ),
                             ),
+                            backgroundColor: Color.fromARGB(255, 247, 249, 255),
                             lineBarsData: [
                               LineChartBarData(
                                 spots: controller.listValues.value.length == 12
@@ -80,11 +98,18 @@ class _OutputPageState extends ModularState<OutputPage, OutputController> {
                                     : [],
                                 isCurved: true,
                                 barWidth: 2,
-                                color: Colors.black,
-                                preventCurveOverShooting: true,
-                                dotData: FlDotData(
-                                  show: true,
+                                gradient: LinearGradient(
+                                  colors: widget.isOutput == "false"
+                                      ? [
+                                          Colors.green,
+                                          Colors.blue,
+                                        ]
+                                      : [
+                                          Colors.red,
+                                          Colors.orange,
+                                        ],
                                 ),
+                                preventCurveOverShooting: true,
                               ),
                             ],
                             titlesData: FlTitlesData(
@@ -99,7 +124,7 @@ class _OutputPageState extends ModularState<OutputPage, OutputController> {
                                 sideTitles: SideTitles(
                                   showTitles: true,
                                   getTitlesWidget: LeftTitleWidgets,
-                                  interval: controller.valueMedian(),
+                                  interval: 10000,
                                   reservedSize: 70,
                                 ),
                               ),
@@ -111,12 +136,12 @@ class _OutputPageState extends ModularState<OutputPage, OutputController> {
                               ),
                             ),
                           ),
-                        );
-                      },
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ],
         ),

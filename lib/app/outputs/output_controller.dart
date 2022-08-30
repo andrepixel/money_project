@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
@@ -34,7 +35,7 @@ class OutputController {
     return sumValuesYear / 2;
   }
 
-  Future<List> getMonths() async {
+  Future<List> getMonthsOutput() async {
     getData();
 
     listValues.value = [];
@@ -43,6 +44,7 @@ class OutputController {
 
     valuesMap.forEach((key, value) async {
       Map valueRandom = {Random().nextInt(1000).toString(): "0"};
+      List<String> valueParsedString = [];
 
       if (value.isEmpty) {
         valuesMonth.addAll(valueRandom);
@@ -52,8 +54,14 @@ class OutputController {
         monthKey = key;
 
         value.forEach((key, value) {
-          sumValuesMonth += double.parse(value);
+          valueParsedString.add(value);
         });
+
+        for (var value in valueParsedString) {
+          if (value.toString().contains("-")) {
+            sumValuesMonth += double.parse(value);
+          }
+        }
 
         valuesMonth.addAll({valueRandom.keys.first: sumValuesMonth});
 
@@ -66,6 +74,52 @@ class OutputController {
     valuesMonth.forEach((key, value) {
       listValues.value.add(value);
     });
+
+    return listValues.value;
+  }
+
+  Future<List> getMonthsInsert() async {
+    getData();
+
+    listValues.value = [];
+
+    final Map valuesMap = json.decode(values.value);
+
+    valuesMap.forEach((key, value) async {
+      Map valueRandom = {Random().nextInt(1000).toString(): "0"};
+      List<String> valueParsedString = [];
+
+      if (value.isEmpty) {
+        valuesMonth.addAll(valueRandom);
+      }
+
+      if (key != monthKey) {
+        monthKey = key;
+
+        value.forEach((key, value) {
+          valueParsedString.add(value);
+        });
+
+        for (var value in valueParsedString) {
+          if (!value.toString().contains("-")) {
+            sumValuesMonth += double.parse(value);
+          }
+        }
+
+        valuesMonth.addAll({valueRandom.keys.first: sumValuesMonth});
+
+        sumValuesMonth = 0;
+      }
+
+      listMonthsValues.value.add(key);
+    });
+
+    valuesMonth.forEach((key, value) {
+      listValues.value.add(value);
+    });
+
+    //TODO PRECISO ARRUMAR A VARIAVEL COMO VALUENOTIFIER
+    //TODO PARA ESCOPO GLBOAL
 
     return listValues.value;
   }
