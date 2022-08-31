@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:money_project/app/notices/data/notice_model.dart';
 import 'package:money_project/app/notices/domain/repositories/i_get_notices_repository.dart';
 
-const apiKey = "key";
+const apiKey = "a8a1ef7991f84e70abfef87fdadd568f";
 const url =
     "https://newsapi.org/v2/top-headlines?category=business&country=br&By=popularity&sortBy=publishedAt&apiKey=${apiKey}";
 
