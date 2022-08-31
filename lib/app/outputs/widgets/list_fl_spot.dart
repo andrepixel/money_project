@@ -1,5 +1,4 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
 import 'package:money_project/app/outputs/output_controller.dart';
 
 List<FlSpot> ListFlSpot(OutputController controller) {

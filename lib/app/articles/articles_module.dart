@@ -5,13 +5,14 @@ import 'package:money_project/app/articles/articles_page.dart';
 
 class ArticlesModule extends Module {
   @override
-  final List<Bind> binds = [
-    Bind.singleton((i) => ArticleController())
-  ];
+  final List<Bind> binds = [Bind.singleton((i) => ArticleController())];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => ArticlesPage()),
+    ChildRoute(
+      "/",
+      child: (_, args) => ArticlesPage(),
+    ),
     ChildRoute(
       "/article/:id",
       child: (_, args) => ArticlePage(id: args.params['id']),

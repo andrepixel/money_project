@@ -29,7 +29,9 @@ class ButtonIconTextWidget extends StatelessWidget {
                 child: ElevatedButton.icon(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.grey.shade400,
+                      isOutput == "false"
+                          ? Colors.green.shade800
+                          : Colors.red.shade800,
                     ),
                   ),
                   onPressed: () => isOutput == "false"
@@ -39,13 +41,13 @@ class ButtonIconTextWidget extends StatelessWidget {
                   icon: isOutput == "false"
                       ? Icon(
                           Icons.show_chart,
-                          color: Colors.green,
+                          color: Colors.green.shade100,
                           size: 40,
                           textDirection: TextDirection.ltr,
                         )
                       : Icon(
                           Icons.show_chart,
-                          color: Colors.red,
+                          color: Colors.red.shade100,
                           size: 40,
                         ),
                   label: isOutput == "false"
@@ -81,7 +83,7 @@ class ButtonIconTextWidget extends StatelessWidget {
                       ),
                     )
                   : Text(
-                      "Será que vocês está gastando muito? O gráfico de saídas, mostra o que realmente sai do seu bolso, em cada mês.",
+                      "Será que vocês está gastando muito? O gráfico de saídas, mostra o que realmente sai do seu bolso,\nem cada mês.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,

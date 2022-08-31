@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 12,
-                horizontal: 60,
+                horizontal: 30,
               ),
               child: SafeArea(
                 child: Container(
@@ -40,8 +40,8 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextTitleUpdateWidget(
-                          title: "O que há de novo?",
-                          subTitle: "Versão 1.0.0",
+                          title: "O que há de novo?   ",
+                          subTitle: "Versão 1.0.0     ",
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,9 +92,10 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
-                            "Dicas",
+                            "Dicas  ",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
@@ -109,31 +110,31 @@ class HomePage extends StatelessWidget {
                         icon: Icons.public,
                         title: "Menu - Notícias",
                         text:
-                            "Que tal saber das notícias relacionados, a economia em geral, e ficar atenados sobre tudo?",
+                            "Que tal saber das notícias relacionados, a economia em\ngeral, e ficar atenados sobre tudo?",
                       ),
                       const SubMenuTextTipsWidget(
                         icon: Icons.newspaper,
                         title: "Menu - Artigos",
                         text:
-                            "Aprender algo novo, é sempre bom. Vamos estudar um pouco sobre investimento, entre outras coisas legais?",
+                            "Aprender algo novo, é sempre\nbom. Vamos estudar um pouco sobre investimento, entre\noutras coisas legais?",
                       ),
                       const SubMenuTextTipsWidget(
                         icon: Icons.add_box,
                         title: "Menu - Inserção",
                         text:
-                            "É por aqui que você vai adicionar os seus gastos e ativos",
+                            "É por aqui que você vai\nadicionar os seus gastos e ativos",
                       ),
                       const SubMenuTextTipsWidget(
                         icon: Icons.equalizer,
                         title: "Menu - Visualização",
                         text:
-                            "Que tal saber se você vai indo bem nas economias?",
+                            "Que tal saber se você vai\nindo bem nas economias?",
                       ),
                       const SubMenuTextTipsWidget(
                         icon: Icons.settings,
                         title: "Menu - Configuração",
                         text:
-                            "Se precisar fazer ajustes adicionais, ou saber alguma informação extra, é por aqui.",
+                            "Se precisar fazer ajustes\nadicionais, ou saber alguma informação extra, é por aqui.",
                       ),
                     ],
                   ),

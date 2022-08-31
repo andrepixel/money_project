@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -14,7 +15,7 @@ class OutputPage extends StatefulWidget {
   OutputPage({
     Key? key,
     required this.isOutput,
-  }) : super(key: key);
+  });
 
   @override
   State<OutputPage> createState() => _OutputPageState();
@@ -23,7 +24,6 @@ class OutputPage extends StatefulWidget {
 class _OutputPageState extends ModularState<OutputPage, OutputController> {
   @override
   void initState() {
-    widget.isOutput = "false";
     if (widget.isOutput == "false") {
       controller.getMonthsInsert();
     } else {
@@ -31,12 +31,6 @@ class _OutputPageState extends ModularState<OutputPage, OutputController> {
     }
 
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.listValues.value = [];
-    super.dispose();
   }
 
   @override
@@ -48,25 +42,25 @@ class _OutputPageState extends ModularState<OutputPage, OutputController> {
           children: [
             ComponentPopWidget(
               title: "Output",
-              path: "/outputs/",
+              path: "/",
             ),
-            ValueListenableBuilder(
-              valueListenable: controller.year,
-              builder: (context, value, child) {
-                return InteractiveViewer(
-                  boundaryMargin: EdgeInsets.all(80),
-                  minScale: 0.5,
-                  maxScale: 2,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 150,
-                      ),
-                      child: SizedBox(
-                        height: 400,
-                        width: 350,
-                        child: LineChart(
+            InteractiveViewer(
+              boundaryMargin: EdgeInsets.all(80),
+              minScale: 0.5,
+              maxScale: 2,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 150,
+                  ),
+                  child: SizedBox(
+                    height: 400,
+                    width: 350,
+                    child: ValueListenableBuilder(
+                      valueListenable: controller.year,
+                      builder: (context, value, child) {
+                        return LineChart(
                           LineChartData(
                             lineTouchData: LineTouchData(
                               enabled: true,
@@ -124,7 +118,8 @@ class _OutputPageState extends ModularState<OutputPage, OutputController> {
                                 sideTitles: SideTitles(
                                   showTitles: true,
                                   getTitlesWidget: LeftTitleWidgets,
-                                  interval: 10000,
+                                  interval:
+                                      controller.valuesLeftIntervalOutputPage(),
                                   reservedSize: 70,
                                 ),
                               ),
@@ -136,12 +131,12 @@ class _OutputPageState extends ModularState<OutputPage, OutputController> {
                               ),
                             ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                   ),
-                );
-              },
+                ),
+              ),
             ),
           ],
         ),

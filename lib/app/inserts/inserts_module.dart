@@ -19,11 +19,11 @@ class InsertsModule extends Module {
       child: (context, args) => InsertPage(),
     ),
     ChildRoute(
-      '/listInserts/',
+      '/listInserts',
       child: (context, args) => ListInsertsPage(),
     ),
     ChildRoute(
-      '/listRemoveInserts/',
+      '/listRemoveInserts',
       child: (context, args) => ListRemovePage(),
     ),
   ];

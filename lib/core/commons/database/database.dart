@@ -62,6 +62,7 @@ class Database extends ChangeNotifier {
     }
 
     values = values.replaceAll(',},', '},');
+    values = values.replaceAll(',}}', '}}');
 
     await sharedPreferences.remove(year);
     await sharedPreferences.setString(year, values);

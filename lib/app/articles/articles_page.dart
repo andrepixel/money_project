@@ -32,7 +32,7 @@ class ArticlesPage extends StatelessWidget {
               child: ArticleHandler(
                 pathImage: "assets/images/article_image_2.png",
                 title:
-                    "2 Dicas para ajudar no seu investimento",
+                    "2 Dicas para ajudar\nno seu investimento",
                 boxFit: BoxFit.contain,
                 colorBackground: Colors.blue,
               ),
@@ -94,7 +94,7 @@ class ArticleHandler extends StatelessWidget {
                     12.0,
                   ),
                   child: SizedBox(
-                    height: 20,
+                    height: 30,
                     child: Text(
                       title,
                       textAlign: TextAlign.center,

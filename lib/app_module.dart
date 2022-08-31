@@ -3,6 +3,7 @@ import 'package:money_project/app/articles/articles_module.dart';
 import 'package:money_project/app/home/home_module.dart';
 import 'package:money_project/app/inserts/inserts_module.dart';
 import 'package:money_project/app/notices/notices_module.dart';
+import 'package:money_project/app/outputs/output_module.dart';
 import 'package:money_project/app/settings/settings_module.dart';
 import 'package:money_project/core/commons/database/database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,29 +26,29 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> routes = [
-    // ModuleRoute(
-    //   "/",
-    //   module: HomeModule(),
-    // ),
-    //  ModuleRoute(
-    //   "/notices/",
-    //   module: NoticesModule(),
-    // ),
-    // ModuleRoute(
-    //   "/settings/",
-    //   module: SettingsModule(),
-    // ),
-    // ModuleRoute(
-    //   "/articles/",
-    //   module: ArticlesModule(),
-    // ),
-    //  ModuleRoute(
-    //   "/inserts/",
-    //   module: InsertsModule(),
-    // )
     ModuleRoute(
       "/",
+      module: HomeModule(),
+    ),
+    ModuleRoute(
+      "/inserts/",
       module: InsertsModule(),
-    )
+    ),
+    ModuleRoute(
+      "/outputs/",
+      module: OutputModule(),
+    ),
+    ModuleRoute(
+      "/notices/",
+      module: NoticesModule(),
+    ),
+    ModuleRoute(
+      "/settings/",
+      module: SettingsModule(),
+    ),
+    ModuleRoute(
+      "/articles/",
+      module: ArticlesModule(),
+    ),
   ];
 }

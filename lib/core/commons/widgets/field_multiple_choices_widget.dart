@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class FieldMultipleChoicesWidget extends StatefulWidget {
   final String nameField;
   List<String> listObjects;
-  String initialValue;
+  ValueNotifier<String> initialValue;
   ValueNotifier<String> variableController;
   bool isTypeInsertion;
 
@@ -59,7 +59,7 @@ class _FieldMultipleChoicesWidgetState
               borderRadius: BorderRadius.circular(20),
             ),
             child: DropdownButton<String>(
-              value: widget.initialValue,
+              value: widget.initialValue.value,
               isExpanded: true,
               icon: Icon(
                 Icons.keyboard_arrow_down,
@@ -83,15 +83,14 @@ class _FieldMultipleChoicesWidgetState
                           : widget.variableController.value = "+";
                     }
 
-                    widget.initialValue = value!;
+                    widget.initialValue.value = value!;
 
-                    if (widget.initialValue == value) {
-                      widget.variableController.value = widget.initialValue;
+                    if (widget.initialValue.value == value) {
+                      widget.variableController.value =
+                          widget.initialValue.value;
                     } else {
                       widget.variableController.value = value;
                     }
-
-                    print("---- ${widget.variableController.value}");
                   },
                 );
               },

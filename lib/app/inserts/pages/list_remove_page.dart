@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/app/inserts/insert_controller.dart';
 import 'package:money_project/app/inserts/widgets/button_with_icon_widget.dart';
-import 'package:money_project/app/inserts/widgets/field_multiple_choices_widget.dart';
+import 'package:money_project/core/commons/widgets/field_multiple_choices_widget.dart';
+import 'package:money_project/core/commons/constants.dart';
 import 'package:money_project/core/commons/widgets/component_pop_widget.dart';
 
 class ListRemovePage extends StatefulWidget {
@@ -13,6 +14,7 @@ class ListRemovePage extends StatefulWidget {
 }
 
 class _ListRemovePageState
+    // ignore: deprecated_member_use
     extends ModularState<ListRemovePage, InsertController> {
   @override
   void initState() {
@@ -33,10 +35,10 @@ class _ListRemovePageState
           children: [
             ComponentPopWidget(
               title: "Remoção",
-              path: "/",
+              path: "/inserts/",
             ),
             FieldMultipleChoicesWidget(
-              initialValue: "2022",
+              initialValue: controller.initialValueButtonMenu,
               listObjects: years,
               nameField: "Selecione o Ano",
               variableController: controller.year,
@@ -46,7 +48,7 @@ class _ListRemovePageState
               height: 7,
             ),
             FieldMultipleChoicesWidget(
-              initialValue: "Janeiro",
+              initialValue: controller.initialValueButtonMenu2,
               listObjects: months,
               nameField: "Selecione o Mês",
               variableController: controller.month,

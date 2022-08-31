@@ -15,7 +15,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: GestureDetector(
-            onTap: () => Modular.to.navigate("/"),
+            onTap: () => Modular.to.navigate("/inserts/"),
             child: Icon(
               Icons.add_box,
             ),
@@ -25,7 +25,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
-            onTap: () => Modular.to.navigate("/"),
+            onTap: () => Modular.to.navigate("/outputs/"),
             child: Icon(Icons.equalizer),
           ),
           label: 'Visualização',

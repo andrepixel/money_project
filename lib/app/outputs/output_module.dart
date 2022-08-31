@@ -20,7 +20,7 @@ class OutputModule extends Module {
     ChildRoute(
       '/outputPage/:isOutput',
       child: (context, args) => OutputPage(
-        isOutput: args.params['isOutput'],
+        isOutput: args.data,
       ),
     ),
   ];

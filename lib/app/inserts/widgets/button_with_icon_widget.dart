@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ButtonWithIconWidget extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -27,7 +28,7 @@ class ButtonWithIconWidget extends StatelessWidget {
       ),
       child: Container(
         height: 50,
-        width: 140,
+        width: 125,
         decoration: BoxDecoration(
           color: colorButton,
           borderRadius: BorderRadius.circular(
