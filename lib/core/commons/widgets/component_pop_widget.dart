@@ -36,7 +36,8 @@ class ComponentPopWidget extends StatelessWidget {
               title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 10,
+                fontSize: 14,
+                letterSpacing: 1,
               ),
             ),
           ],

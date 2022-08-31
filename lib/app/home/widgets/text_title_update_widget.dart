@@ -15,6 +15,7 @@ class TextTitleUpdateWidget extends StatelessWidget {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               title,
@@ -27,8 +28,8 @@ class TextTitleUpdateWidget extends StatelessWidget {
           ],
         ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               subTitle,

@@ -15,7 +15,7 @@ class ArticleController implements Disposable {
     ],
     [
       ["[image]assets/images/article_image_2.png"],
-      ["[title]2 Dicas para ajudar no seu investimento"],
+      ["[title]2 Dicas para ajudar\nno seu investimento"],
       ["[subTitle]1. Faça o seu planejamento financeiro"],
       [
         "[text]O primeiro para começar a investir é fazer o seu planejamento financeiro. Ele fornece o mapeamento das suas finanças, isto é, as entradas e saídas do seu orçamento. Para isso, você pode utilizar planilhas ou aplicativos de celular. Anote todos os gastos, até os pequenos como, o cafézinho de todos os dias. E não se esqueça dos gastos recorrentes que ocorrem em longos períodos como seguro, impostos e outros. Com o seu planejamento em mãos, identifique os gastos supérfluos e as oportunidades de economia. Assim, você terá mais dinheiro para investir. Estabeleça também o valor a ser aplicado e a frequência, por exemplo, aplicar R\$500,00 por mês. Além de fazer o planejamento financeiro, você deve segui-lo. Reserve algum tempo na semana para analisar o seu balanço. Em pouco tempo, a diferença será nítida."

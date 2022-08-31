@@ -11,12 +11,13 @@ Future<void> main() async {
   final Database database = Database(sharedPreferences: sharedPreferences);
 
   database.openDatabase();
-  
+
   return runApp(
     ModularApp(
       module: AppModule(
         sharedPreferences: sharedPreferences,
       ),
+      
       child: const AppWidget(),
     ),
   );

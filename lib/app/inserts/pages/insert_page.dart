@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/app/inserts/widgets/button_with_icon_widget.dart';
-import 'package:money_project/app/inserts/widgets/field_multiple_choices_widget.dart';
+import 'package:money_project/core/commons/widgets/field_multiple_choices_widget.dart';
 import 'package:money_project/app/inserts/widgets/field_text_widget.dart';
 import 'package:money_project/app/inserts/insert_controller.dart';
+import 'package:money_project/core/commons/constants.dart';
 import 'package:money_project/core/commons/widgets/component_pop_widget.dart';
 
 class InsertPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class InsertPage extends StatefulWidget {
   State<InsertPage> createState() => _InsertPageState();
 }
 
+// ignore: deprecated_member_use
 class _InsertPageState extends ModularState<InsertPage, InsertController> {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
               path: "/",
             ),
             FieldMultipleChoicesWidget(
-              initialValue: "2022",
+              initialValue: controller.initialValueButtonMenu,
               listObjects: years,
               nameField: "Selecione o Ano",
               variableController: controller.year,
@@ -35,7 +37,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
               height: 7,
             ),
             FieldMultipleChoicesWidget(
-              initialValue: "Janeiro",
+              initialValue: controller.initialValueButtonMenu2,
               listObjects: months,
               nameField: "Selecione o Mês",
               variableController: controller.month,
@@ -45,7 +47,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
               height: 7,
             ),
             FieldMultipleChoicesWidget(
-              initialValue: "Gasto",
+              initialValue: controller.initialValueButtonMenu3,
               listObjects: typesInsert,
               nameField: "Selecione o tipo da inserção",
               isTypeInsertion: true,
@@ -115,7 +117,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                             colorIcon: Colors.black87,
                             colorLabel: Colors.black87,
                             myFunction: () =>
-                                Modular.to.pushNamed("/listInserts/"),
+                                Modular.to.pushNamed("listInserts"),
                           ),
                           ButtonWithIconWidget(
                             icon: Icons.remove_circle,
@@ -124,7 +126,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                             colorIcon: Colors.red.shade500,
                             colorLabel: Colors.red.shade500,
                             myFunction: () =>
-                                Modular.to.pushNamed("/listRemoveInserts/"),
+                                Modular.to.pushNamed("listRemoveInserts"),
                           ),
                         ],
                       )

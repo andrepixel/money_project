@@ -1,55 +1,26 @@
-import 'dart:collection';
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/core/commons/database/database.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-const List<String> years = [
-  "2022",
-  "2023",
-  "2024",
-  "2025",
-  "2026",
-  "2027",
-  "2028",
-  "2029",
-  "2030",
-];
-
-const List<String> months = [
-  "Janeiro",
-  "Fevereiro",
-  "Março",
-  "Abril",
-  "Maio",
-  "Junho",
-  "Julho",
-  "Agosto",
-  "Setembro",
-  "Outubro",
-  "Novembro",
-  "Dezembro",
-];
-
-const List<String> typesInsert = [
-  "Gasto",
-  "Lucro",
-];
 
 class InsertController {
   final Database database = Modular.get();
   ValueNotifier<String> year = ValueNotifier("2022");
+  ValueNotifier<String> initialValueButtonMenu = ValueNotifier("2022");
+  ValueNotifier<String> initialValueButtonMenu2 = ValueNotifier("Janeiro");
+  ValueNotifier<String> initialValueButtonMenu3 = ValueNotifier("Gasto");
   ValueNotifier<String> month = ValueNotifier("Janeiro");
   ValueNotifier<String> type = ValueNotifier("-");
   ValueNotifier<String> itemName = ValueNotifier("0");
   ValueNotifier<String> itemValue = ValueNotifier("0");
   ValueNotifier<bool> stateInsertion = ValueNotifier(false);
   ValueNotifier<bool> isTrue = ValueNotifier(false);
+  ValueNotifier<bool> isRemove = ValueNotifier(false);
 
-  void insertData() {
-    database.insertData(
+  void insertData() async {
+    await database.insertData(
       year: year.value,
       month: month.value,
       type: type.value,
@@ -63,9 +34,14 @@ class InsertController {
   void getData({
     required ValueNotifier<bool> isTrue,
   }) {
-    print("--- 1 ${isTrue.value}");
     isTrue.value = !isTrue.value;
-    print("--- 2 ${isTrue.value}");
+  }
+
+  void removeData() {
+    if (isRemove.value == false) {
+      database.removeData(year: year.value, month: month.value);
+      isRemove.value = true;
+    }
   }
 
   Future<List> listInserts({
@@ -85,7 +61,7 @@ class InsertController {
 
     for (var element in jsonList) {
       String newElement = element.toString();
-      
+
       newElement = newElement.replaceAll("{", "");
       newElement = newElement.replaceAll("}", "");
       newElement = newElement.replaceAll(",", "\n");
