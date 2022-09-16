@@ -60,53 +60,55 @@ class ArticleHandler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 10,
-      ),
-      child: IntrinsicHeight(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 250,
-            decoration: BoxDecoration(
-              color: colorBackground,
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 170,
-                  width: 250,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(46),
-                      topRight: Radius.circular(46),
-                    ),
-                    child: Image.asset(
-                      pathImage,
-                      fit: boxFit,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(
-                    12.0,
-                  ),
-                  child: SizedBox(
-                    height: 30,
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(
+          bottom: 10,
+        ),
+        child: IntrinsicHeight(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: 250,
+              decoration: BoxDecoration(
+                color: colorBackground,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 170,
+                    width: 250,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(46),
+                        topRight: Radius.circular(46),
+                      ),
+                      child: Image.asset(
+                        pathImage,
+                        fit: boxFit,
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(
+                      12.0,
+                    ),
+                    child: SizedBox(
+                      height: 30,
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

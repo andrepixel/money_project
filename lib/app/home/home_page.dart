@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
               child: SafeArea(
                 child: Container(
                   height: 220,
-                  width: 287,
+                  width: MediaQuery.of(context).size.width * 2,
                   decoration: BoxDecoration(
                     color: Color(Colors.grey.shade300.value),
                     borderRadius: const BorderRadius.horizontal(
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
               ),
               child: Container(
                 height: 540,
-                width: 287,
+                width: MediaQuery.of(context).size.width * 2,
                 decoration: BoxDecoration(
                   color: Color(Colors.grey.shade300.value),
                   borderRadius: const BorderRadius.horizontal(
@@ -107,32 +107,32 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       const SubMenuTextTipsWidget(
-                        icon: Icons.public,
-                        title: "Menu - Notícias",
-                        text:
-                            "Que tal saber das notícias relacionados, a economia em\ngeral, e ficar atenados sobre tudo?",
-                      ),
-                      const SubMenuTextTipsWidget(
-                        icon: Icons.newspaper,
-                        title: "Menu - Artigos",
-                        text:
-                            "Aprender algo novo, é sempre\nbom. Vamos estudar um pouco sobre investimento, entre\noutras coisas legais?",
-                      ),
-                      const SubMenuTextTipsWidget(
                         icon: Icons.add_box,
-                        title: "Menu - Inserção",
+                        title: "Inserção",
                         text:
                             "É por aqui que você vai\nadicionar os seus gastos e ativos",
                       ),
                       const SubMenuTextTipsWidget(
                         icon: Icons.equalizer,
-                        title: "Menu - Visualização",
+                        title: "Visualização",
                         text:
                             "Que tal saber se você vai\nindo bem nas economias?",
                       ),
                       const SubMenuTextTipsWidget(
+                        icon: Icons.newspaper,
+                        title: "Artigos",
+                        text:
+                            "Aprender algo novo, é sempre\nbom. Vamos estudar um pouco sobre investimento, entre\noutras coisas legais?",
+                      ),
+                      const SubMenuTextTipsWidget(
+                        icon: Icons.public,
+                        title: "Notícias",
+                        text:
+                            "Que tal saber das notícias relacionados, a economia em\ngeral, e ficar atenados sobre tudo?",
+                      ),
+                      const SubMenuTextTipsWidget(
                         icon: Icons.settings,
-                        title: "Menu - Configuração",
+                        title: "Configuração",
                         text:
                             "Se precisar fazer ajustes\nadicionais, ou saber alguma informação extra, é por aqui.",
                       ),

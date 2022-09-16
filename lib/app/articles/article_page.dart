@@ -32,7 +32,7 @@ class _ArticlePageState extends State<ArticlePage> {
               path: "/articles/",
             ),
             Container(
-              width: 270,
+              width: 320,
               decoration: BoxDecoration(
                 color: Colors.grey.shade100,
                 borderRadius: BorderRadius.circular(10),
@@ -127,7 +127,7 @@ class _ArticlePageState extends State<ArticlePage> {
                                             ? Padding(
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                  vertical: 5,
+                                                  vertical: 15,
                                                   horizontal: 10,
                                                 ),
                                                 child: Text(
