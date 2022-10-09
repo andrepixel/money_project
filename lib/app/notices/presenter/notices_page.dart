@@ -36,7 +36,7 @@ class _NoticesPageState extends ModularState<NoticesPage, NoticeController> {
                             vertical:
                                 (snapshot.data as NoticeModel).title.length < 80
                                     ? 10
-                                    : 20,
+                                    : 30,
                           ),
                           child: HandlerNoticeWidget(
                               noticeModel: snapshot.data as NoticeModel),

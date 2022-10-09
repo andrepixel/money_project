@@ -17,7 +17,7 @@ class HandlerNoticeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 60,
+        horizontal: 40,
       ),
       child: GestureDetector(
         onTap: () async {
@@ -49,8 +49,8 @@ class HandlerNoticeWidget extends StatelessWidget {
                       ),
                     ),
               Container(
-                height: noticeModel.title.length < 80 ? 100 : 140,
-                width: 360,
+                height: noticeModel.title.length < 80 ? 120 : 150,
+                width: 460,
                 decoration: BoxDecoration(
                   borderRadius: noticeModel.urlToImage == "null"
                       ? BorderRadiusDirectional.circular(20)

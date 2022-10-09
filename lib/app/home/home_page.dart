@@ -52,10 +52,10 @@ class HomePage extends StatelessWidget {
                               ],
                               subTopic: [
                                 [
-                                  "Notícias",
-                                  "Artigos",
                                   "Inserção",
                                   "Visualização",
+                                  "Notícias",
+                                  "Artigos",
                                   "Configuração",
                                 ],
                               ],
@@ -119,16 +119,16 @@ class HomePage extends StatelessWidget {
                             "Que tal saber se você vai\nindo bem nas economias?",
                       ),
                       const SubMenuTextTipsWidget(
-                        icon: Icons.newspaper,
-                        title: "Artigos",
-                        text:
-                            "Aprender algo novo, é sempre\nbom. Vamos estudar um pouco sobre investimento, entre\noutras coisas legais?",
-                      ),
-                      const SubMenuTextTipsWidget(
                         icon: Icons.public,
                         title: "Notícias",
                         text:
                             "Que tal saber das notícias relacionados, a economia em\ngeral, e ficar atenados sobre tudo?",
+                      ),
+                      const SubMenuTextTipsWidget(
+                        icon: Icons.newspaper,
+                        title: "Artigos",
+                        text:
+                            "Aprender algo novo, é sempre\nbom. Vamos estudar um pouco sobre investimento, entre\noutras coisas legais?",
                       ),
                       const SubMenuTextTipsWidget(
                         icon: Icons.settings,
