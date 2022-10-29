@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:money_project/app/home/home_controller.dart';
 import 'package:money_project/app/home/widgets/bottom_navigation_bar_widget.dart';
 import 'package:money_project/app/home/widgets/sub_menu_text_tips_widget.dart';
 import 'package:money_project/app/home/widgets/text_title_update_widget.dart';
 import 'package:money_project/app/home/widgets/text_topic_update_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ModularState<HomePage, HomeController> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +27,67 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 30,
+              ),
+              child: SafeArea(
+                child: Container(
+                  height: 100,
+                  width: MediaQuery.of(context).size.width * 2,
+                  decoration: BoxDecoration(
+                    color: Color(Colors.grey.shade300.value),
+                    borderRadius: const BorderRadius.horizontal(
+                      left: Radius.circular(40),
+                      right: Radius.circular(40),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20,
+                      left: 30,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Seu Saldo  ",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Icon(Icons.star)
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 15,
+                            right: 30,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "R\$ ${controller.sumInsertions()}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 12,
