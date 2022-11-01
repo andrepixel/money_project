@@ -17,6 +17,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   void initState() {
     super.initState();
+    controller.sumInsertions();
   }
 
   @override
@@ -30,7 +31,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 12,
-                horizontal: 30,
+                horizontal: 20,
               ),
               child: SafeArea(
                 child: Container(
@@ -57,7 +58,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             Text(
                               "Seu Saldo  ",
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
                             ),
@@ -73,10 +73,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "R\$ ${controller.sumInsertions()}",
+                                "R\$ ${controller.sumValues.value}",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  fontSize: 20,
                                 ),
                               ),
                             ],
@@ -91,52 +91,50 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 12,
-                horizontal: 30,
+                horizontal: 20,
               ),
-              child: SafeArea(
-                child: Container(
-                  height: 220,
-                  width: MediaQuery.of(context).size.width * 2,
-                  decoration: BoxDecoration(
-                    color: Color(Colors.grey.shade300.value),
-                    borderRadius: const BorderRadius.horizontal(
-                      left: Radius.circular(40),
-                      right: Radius.circular(40),
-                    ),
+              child: Container(
+                height: 240,
+                width: MediaQuery.of(context).size.width * 2,
+                decoration: BoxDecoration(
+                  color: Color(Colors.grey.shade300.value),
+                  borderRadius: const BorderRadius.horizontal(
+                    left: Radius.circular(40),
+                    right: Radius.circular(40),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 25,
-                      left: 30,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextTitleUpdateWidget(
-                          title: "O que há de novo?   ",
-                          subTitle: "Versão 1.0.0     ",
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextTopicUpdateWidget(
-                              topic: [
-                                ["Inserção de menus"],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 25,
+                    left: 30,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextTitleUpdateWidget(
+                        title: "O que há de novo?   ",
+                        subTitle: "Versão 1.0.0     ",
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextTopicUpdateWidget(
+                            topic: [
+                              ["Inserção de menus"],
+                            ],
+                            subTopic: [
+                              [
+                                "Inserção",
+                                "Visualização",
+                                "Notícias",
+                                "Artigos",
+                                "Configuração",
                               ],
-                              subTopic: [
-                                [
-                                  "Inserção",
-                                  "Visualização",
-                                  "Notícias",
-                                  "Artigos",
-                                  "Configuração",
-                                ],
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

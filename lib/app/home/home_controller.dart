@@ -7,83 +7,57 @@ import 'package:money_project/core/commons/constants.dart';
 import '../../core/commons/database/database.dart';
 
 class HomeController {
+  List<String> newValues = List<String>.filled(100, "");
+  List<String> cnewValues = List<String>.filled(100, "");
+  ValueNotifier<double> sumValues = ValueNotifier(0);
   final Database database = Modular.get();
   final List jsonList = [];
-  ValueNotifier<double> sumValues = ValueNotifier(0);
+  final regexSpace = RegExp(r" ", caseSensitive: false, multiLine: false);
+  final regexCaractere =
+      RegExp(r"[a-zA-Z]", caseSensitive: false, multiLine: false);
+  final regexComma = RegExp(r",", caseSensitive: false, multiLine: false);
+  final regexColon = RegExp(r":", caseSensitive: false, multiLine: false);
+  final regex5 = RegExp(r"-", caseSensitive: false, multiLine: false);
+  var aux = 0;
 
-  double sumInsertions() {
+  void sumInsertions() {
     listInserts();
 
     if (jsonList.isNotEmpty) {
       for (var element in jsonList) {
-        print(element);
 
         String values = element.toString();
 
         values = values.replaceAll("{", "");
-        values = values.replaceAll("}", "");
+        values = values.replaceAll("}", ",");
 
-        // print(values);
-
-        var regex1 = RegExp(r"\d", caseSensitive: false, multiLine: false);
-        var regex2 =
-            RegExp(r"[a-zA-Z]", caseSensitive: false, multiLine: false);
-        var regex3 = RegExp(r",", caseSensitive: false, multiLine: false);
-
-        var newValues = List<String>.filled(100, "");
-        var copyValues = List<String>.filled(values.length, values);
-        String aux = "";
-        int auxInt = 0;
+        values = values.replaceAll(regexCaractere, "");
+        values = values.replaceAll(regexColon, "");
+        values = values.replaceAll(regexSpace, "");
 
         for (var i = 0; i < values.length; i++) {
-          if (values[i] == '-') {
-            aux += values[i];
-            aux += values[i + 1];
-
-            // print(aux);
-
-            newValues[auxInt] = aux;
-
-            auxInt++;
-            i += 2;
-
-            aux = "";
+          if (!values[i].contains(",") && !values[i].contains("-")) {
+            newValues[aux] += values[i];
           }
 
-          if (i < values.length) {
-            // print(values[i]);
-            // print(values[i + 1]);
+          if (values[i].contains(",")) {
+            aux++;
+          }
 
-            var isNumber = regex1.hasMatch(values[i]);
-            var isCaractere = regex2.hasMatch(copyValues[i + 1]);
-            var isComma = regex3.hasMatch(copyValues[i + 1]);
-
-            if ((isNumber && isCaractere) || (isNumber && isComma)) {
-              newValues[auxInt] = values[i];
-
-              auxInt++;
-            }
+          if (values[i].contains("-")) {
+            newValues[aux] = values[i];
           }
         }
+      }
 
-        double valuesDouble = 0.0;
-
-        for (var i = 0; i < newValues.length; i++) {
-          if (newValues[i] == "") {
-            break;
-          }
-
-          // print(newValues[i]);
-
-          valuesDouble += double.parse(newValues[i]);
+      for (var i = 0; i < newValues.length; i++) {
+        if (newValues[i].isNotEmpty) {
+          sumValues.value += double.parse(newValues[i]);
         }
-
-        // print(valuesDouble);
-
-        sumValues.value += valuesDouble;
       }
     }
-    return sumValues.value;
+
+    aux++;
   }
 
   void listInserts() {
