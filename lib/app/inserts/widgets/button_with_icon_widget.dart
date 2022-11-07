@@ -28,7 +28,7 @@ class ButtonWithIconWidget extends StatelessWidget {
       ),
       child: Container(
         height: 50,
-        width: 135,
+        width: 140,
         decoration: BoxDecoration(
           color: colorButton,
           borderRadius: BorderRadius.circular(
