@@ -81,15 +81,35 @@ class _FieldMultipleChoicesWidgetState
                       value == "Gasto"
                           ? widget.variableController.value = "-"
                           : widget.variableController.value = "+";
-                    }
 
-                    widget.initialValue.value = value!;
+                      widget.initialValue.value = value!;
 
-                    if (widget.initialValue.value == value) {
-                      widget.variableController.value =
-                          widget.initialValue.value;
+                      if (widget.initialValue.value == value) {
+                        if (widget.initialValue.value == "Gasto") {
+                          widget.variableController.value = "-";
+                        }
+
+                        if (widget.initialValue.value == "Lucro") {
+                          widget.variableController.value = "+";
+                        }
+                      } else {
+                        if (value == "Gasto") {
+                          widget.variableController.value = "-";
+                        }
+
+                        if (value == "Lucro") {
+                          widget.variableController.value = "+";
+                        }
+                      }
                     } else {
-                      widget.variableController.value = value;
+                      widget.initialValue.value = value!;
+
+                      if (widget.initialValue.value == value) {
+                        widget.variableController.value =
+                            widget.initialValue.value;
+                      } else {
+                        widget.variableController.value = value;
+                      }
                     }
                   },
                 );

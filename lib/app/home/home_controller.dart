@@ -25,7 +25,6 @@ class HomeController {
 
     if (jsonList.isNotEmpty) {
       for (var element in jsonList) {
-
         String values = element.toString();
 
         values = values.replaceAll("{", "");
