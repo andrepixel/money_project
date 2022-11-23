@@ -114,13 +114,9 @@ class HomeController {
     if (trimValues.length == 4) {
       List<String> newValues = List.filled(trimValues.length, "");
 
-      for (var i = 0; i < values.length; i++) {
-        if (i < newValues.length) {
-          if (values[i].isNotEmpty) {
-            break;
-          }
-
-          newValues[aux] = values[i];
+      for (var i = 0; i < trimValues.length; i++) {
+        if (i < trimValues.length) {
+          newValues[aux] = trimValues[i];
           aux++;
         }
       }
@@ -143,13 +139,9 @@ class HomeController {
     if (trimValues.length == 5) {
       List<String> newValues = List.filled(trimValues.length, "");
 
-      for (var i = 0; i < values.length; i++) {
-        if (i < newValues.length) {
-          if (values[i].isEmpty) {
-            break;
-          }
-
-          newValues[aux] = values[i];
+      for (var i = 0; i < trimValues.length; i++) {
+        if (i < trimValues.length) {
+          newValues[aux] = trimValues[i];
           aux++;
         }
       }
@@ -176,80 +168,9 @@ class HomeController {
     if (trimValues.length == 6) {
       List<String> newValues = List.filled(trimValues.length, "");
 
-      for (var i = 0; i < values.length; i++) {
-        if (i < newValues.length) {
-          if (values[i].isEmpty) {
-            break;
-          }
-
-          newValues[aux] = values[i];
-          aux++;
-        }
-      }
-
-      values[3] = ".";
-
-      for (var i = 4; i < newValues.length + 1; i++) {
-        values[i] = newValues[i - 1];
-      }
-
-      sumValueString = "";
-
-      for (var i = 0; i < values.length; i++) {
-        if (values[i].isEmpty) {
-          break;
-        }
-
-        sumValueString += values[i];
-      }
-
-      return sumValueString;
-    }
-
-    return "";
-  }
-
-  String adjustValueNegative(
-      String trimValues, List<String> values, String sumValueString, int aux) {
-    if (trimValues.length == 5) {
-      List<String> newValues = List.filled(trimValues.length, "");
-
-      for (var i = 0; i < values.length; i++) {
-        if (i < newValues.length) {
-          if (values[i].isNotEmpty) {
-            break;
-          }
-
-          newValues[aux] = values[i];
-          aux++;
-        }
-      }
-
-      values[2] = ".";
-
-      for (var i = 3; i < newValues.length + 1; i++) {
-        values[i] = newValues[i - 1];
-      }
-
-      sumValueString = "";
-
-      for (var i = 0; i < values.length; i++) {
-        sumValueString += values[i];
-      }
-
-      return sumValueString;
-    }
-
-    if (trimValues.length == 6) {
-      List<String> newValues = List.filled(trimValues.length, "");
-
-      for (var i = 0; i < values.length; i++) {
-        if (i < newValues.length) {
-          if (values[i].isEmpty) {
-            break;
-          }
-
-          newValues[aux] = values[i];
+      for (var i = 0; i < trimValues.length; i++) {
+        if (i < trimValues.length) {
+          newValues[aux] = trimValues[i];
           aux++;
         }
       }
@@ -276,13 +197,115 @@ class HomeController {
     if (trimValues.length == 7) {
       List<String> newValues = List.filled(trimValues.length, "");
 
-      for (var i = 0; i < values.length; i++) {
-        if (i < newValues.length) {
-          if (values[i].isEmpty) {
-            break;
-          }
+      for (var i = 0; i < trimValues.length; i++) {
+        if (i < trimValues.length) {
+          newValues[aux] = trimValues[i];
+          aux++;
+        }
+      }
+      
+      values[1] = ".";
 
-          newValues[aux] = values[i];
+      for (var i = 2; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+     
+      values[5] = ".";
+
+      for (var i = 4; i < newValues.length + 1; i++) {
+        if (i < newValues.length) {
+          values[i + 2] = newValues[i];
+        }
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        if (values[i].isEmpty) {
+          break;
+        }
+
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    return "";
+  }
+
+  String adjustValueNegative(
+    String trimValues,
+    List<String> values,
+    String sumValueString,
+    int aux,
+  ) {
+    if (trimValues.length <= 4) {
+      sumValueString = trimValues.replaceAll(",00", "").toString();
+
+      return sumValueString;
+    }
+
+    if (trimValues.length == 5) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < trimValues.length; i++) {
+        if (i < trimValues.length) {
+          newValues[aux] = trimValues[i];
+          aux++;
+        }
+      }
+
+      values[2] = ".";
+
+      for (var i = 3; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    if (trimValues.length == 6) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < trimValues.length; i++) {
+        if (i < trimValues.length) {
+          newValues[aux] = trimValues[i];
+          aux++;
+        }
+      }
+
+      values[3] = ".";
+
+      for (var i = 4; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        if (values[i].isEmpty) {
+          break;
+        }
+
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    if (trimValues.length == 7) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < trimValues.length; i++) {
+        if (i < trimValues.length) {
+          newValues[aux] = trimValues[i];
           aux++;
         }
       }
@@ -291,6 +314,43 @@ class HomeController {
 
       for (var i = 5; i < newValues.length + 1; i++) {
         values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        if (values[i].isEmpty) {
+          break;
+        }
+
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    if (trimValues.length == 8) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < trimValues.length; i++) {
+        if (i < trimValues.length) {
+          newValues[aux] = trimValues[i];
+          aux++;
+        }
+      }
+
+      values[2] = ".";
+
+      for (var i = 3; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+     
+      values[6] = ".";
+
+      for (var i = 5; i < newValues.length + 1; i++) {
+        if (i < newValues.length) {
+          values[i + 2] = newValues[i];
+        }
       }
 
       sumValueString = "";
