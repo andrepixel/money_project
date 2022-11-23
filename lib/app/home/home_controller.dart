@@ -59,6 +59,256 @@ class HomeController {
     aux++;
   }
 
+  String returnValueFormated() {
+    String sumValueString = sumValues.value.toString();
+    List<String> values = List.filled(50, "");
+    String trimValues = "";
+    var aux = 0;
+
+    sumValueString = sumValueString.replaceAll(".", ",");
+    sumValueString = sumValueString + "0";
+
+    for (var i = 0; i < sumValueString.length; i++) {
+      if (sumValueString[i] == ',') {
+        for (var i = 0; i < values.length; i++) {
+          if (values[i].isNotEmpty) {
+            trimValues += values[i].toString();
+          }
+        }
+
+        if (trimValues[0] == "-") {
+          sumValueString = adjustValueNegative(
+            trimValues,
+            values,
+            sumValueString,
+            aux,
+          );
+
+          break;
+        }
+
+        sumValueString = adjustValuePositive(
+          trimValues,
+          values,
+          sumValueString,
+          aux,
+        );
+
+        break;
+      }
+
+      if (i < values.length - 1) {
+        values[i] = sumValueString[i];
+      }
+    }
+
+    return sumValueString + ",00";
+  }
+
+  String adjustValuePositive(
+    String trimValues,
+    List<String> values,
+    String sumValueString,
+    int aux,
+  ) {
+    if (trimValues.length == 4) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < values.length; i++) {
+        if (i < newValues.length) {
+          if (values[i].isNotEmpty) {
+            break;
+          }
+
+          newValues[aux] = values[i];
+          aux++;
+        }
+      }
+
+      values[1] = ".";
+
+      for (var i = 2; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    if (trimValues.length == 5) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < values.length; i++) {
+        if (i < newValues.length) {
+          if (values[i].isEmpty) {
+            break;
+          }
+
+          newValues[aux] = values[i];
+          aux++;
+        }
+      }
+
+      values[2] = ".";
+
+      for (var i = 3; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        if (values[i].isEmpty) {
+          break;
+        }
+
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    if (trimValues.length == 6) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < values.length; i++) {
+        if (i < newValues.length) {
+          if (values[i].isEmpty) {
+            break;
+          }
+
+          newValues[aux] = values[i];
+          aux++;
+        }
+      }
+
+      values[3] = ".";
+
+      for (var i = 4; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        if (values[i].isEmpty) {
+          break;
+        }
+
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    return "";
+  }
+
+  String adjustValueNegative(
+      String trimValues, List<String> values, String sumValueString, int aux) {
+    if (trimValues.length == 5) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < values.length; i++) {
+        if (i < newValues.length) {
+          if (values[i].isNotEmpty) {
+            break;
+          }
+
+          newValues[aux] = values[i];
+          aux++;
+        }
+      }
+
+      values[2] = ".";
+
+      for (var i = 3; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    if (trimValues.length == 6) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < values.length; i++) {
+        if (i < newValues.length) {
+          if (values[i].isEmpty) {
+            break;
+          }
+
+          newValues[aux] = values[i];
+          aux++;
+        }
+      }
+
+      values[3] = ".";
+
+      for (var i = 4; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        if (values[i].isEmpty) {
+          break;
+        }
+
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    if (trimValues.length == 7) {
+      List<String> newValues = List.filled(trimValues.length, "");
+
+      for (var i = 0; i < values.length; i++) {
+        if (i < newValues.length) {
+          if (values[i].isEmpty) {
+            break;
+          }
+
+          newValues[aux] = values[i];
+          aux++;
+        }
+      }
+
+      values[4] = ".";
+
+      for (var i = 5; i < newValues.length + 1; i++) {
+        values[i] = newValues[i - 1];
+      }
+
+      sumValueString = "";
+
+      for (var i = 0; i < values.length; i++) {
+        if (values[i].isEmpty) {
+          break;
+        }
+
+        sumValueString += values[i];
+      }
+
+      return sumValueString;
+    }
+
+    return "";
+  }
+
   void listInserts() {
     for (var i = 0; i < years.length; i++) {
       final list = database.getData(

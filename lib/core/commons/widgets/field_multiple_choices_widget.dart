@@ -78,26 +78,26 @@ class _FieldMultipleChoicesWidgetState
                 setState(
                   () {
                     if (widget.isTypeInsertion == true) {
-                      value == "Gasto"
+                      value == "Despesa"
                           ? widget.variableController.value = "-"
                           : widget.variableController.value = "+";
 
                       widget.initialValue.value = value!;
 
                       if (widget.initialValue.value == value) {
-                        if (widget.initialValue.value == "Gasto") {
+                        if (widget.initialValue.value == "Despesa") {
                           widget.variableController.value = "-";
                         }
 
-                        if (widget.initialValue.value == "Lucro") {
+                        if (widget.initialValue.value == "Receita") {
                           widget.variableController.value = "+";
                         }
                       } else {
-                        if (value == "Gasto") {
+                        if (value == "Despesa") {
                           widget.variableController.value = "-";
                         }
 
-                        if (value == "Lucro") {
+                        if (value == "Receita") {
                           widget.variableController.value = "+";
                         }
                       }

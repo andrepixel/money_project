@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/core/commons/database/database.dart';
 
@@ -10,7 +10,7 @@ class InsertController {
   ValueNotifier<String> year = ValueNotifier("2022");
   ValueNotifier<String> initialValueButtonMenu = ValueNotifier("2022");
   ValueNotifier<String> initialValueButtonMenu2 = ValueNotifier("Janeiro");
-  ValueNotifier<String> initialValueButtonMenu3 = ValueNotifier("Gasto");
+  ValueNotifier<String> initialValueButtonMenu3 = ValueNotifier("Despesa");
   ValueNotifier<String> month = ValueNotifier("Janeiro");
   ValueNotifier<String> type = ValueNotifier("-");
   ValueNotifier<String> itemName = ValueNotifier("0");

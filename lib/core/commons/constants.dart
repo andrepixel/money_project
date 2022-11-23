@@ -27,6 +27,6 @@ const List<String> months = [
 ];
 
 const List<String> typesInsert = [
-  "Gasto",
-  "Lucro",
+  "Despesa",
+  "Receita",
 ];

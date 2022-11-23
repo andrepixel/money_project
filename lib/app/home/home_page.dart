@@ -73,7 +73,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "R\$ ${controller.sumValues.value}",
+                                "R\$ ${controller.returnValueFormated()}",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
