@@ -24,11 +24,11 @@ class ButtonWithIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(
-        5,
+        10,
       ),
       child: Container(
         height: 50,
-        width: 140,
+        width: 180,
         decoration: BoxDecoration(
           color: colorButton,
           borderRadius: BorderRadius.circular(

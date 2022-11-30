@@ -119,15 +119,15 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                             myFunction: () =>
                                 Modular.to.pushNamed("listInserts"),
                           ),
-                          ButtonWithIconWidget(
-                            icon: Icons.remove_circle,
-                            label: "Remover",
-                            colorButton: Colors.grey.shade200,
-                            colorIcon: Colors.red.shade500,
-                            colorLabel: Colors.red.shade500,
-                            myFunction: () =>
-                                Modular.to.pushNamed("listRemoveInserts"),
-                          ),
+                          // ButtonWithIconWidget(
+                          //   icon: Icons.remove_circle,
+                          //   label: "Remover",
+                          //   colorButton: Colors.grey.shade200,
+                          //   colorIcon: Colors.red.shade500,
+                          //   colorLabel: Colors.red.shade500,
+                          //   myFunction: () =>
+                          //       Modular.to.pushNamed("listRemoveInserts"),
+                          // ),
                         ],
                       )
                     ],

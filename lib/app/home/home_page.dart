@@ -73,7 +73,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "R\$ ${controller.returnValueFormated()}",
+                                "R\$ ${controller.returnValueFormated() == ",00" ? "0,00" : controller.returnValueFormated()}",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,

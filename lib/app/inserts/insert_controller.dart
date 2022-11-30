@@ -44,6 +44,17 @@ class InsertController {
     }
   }
 
+  // Future<Map<String, dynamic>> listInserts({
+  //   required ValueNotifier<String> year,
+  //   required ValueNotifier<String> month,
+  // }) async {
+
+  // }
+
+  String list(String a) {
+    return "turma da mônica";
+  }
+
   Future<List> listInserts({
     required ValueNotifier<String> year,
     required ValueNotifier<String> month,

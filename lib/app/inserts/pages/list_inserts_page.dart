@@ -37,7 +37,7 @@ class _ListInsertsPageState
               height: 7,
             ),
             FieldMultipleChoicesWidget(
-              initialValue:  controller.initialValueButtonMenu2,
+              initialValue: controller.initialValueButtonMenu2,
               listObjects: months,
               nameField: "Selecione o Mês",
               variableController: controller.month,
@@ -80,47 +80,127 @@ class _ListInsertsPageState
                                 month: controller.month,
                               )
                               .then((value) => value[index]),
-                          builder: (context, snapshot) =>
-                              snapshot.hasData == true
-                                  ? Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 25,
+                          builder: (context, snapshot) => snapshot.hasData ==
+                                  true
+                              ? Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 25,
+                                    vertical: 10,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "${controller.month.value} - ${controller.year.value}",
+                                        style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "${controller.month.value} - ${controller.year.value}",
-                                            style: TextStyle(
-                                              fontSize: 30,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 20,
+                                          vertical: 10,
+                                        ),
+                                        child: Container(
+                                          color: Colors.grey,
+                                          height: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: 10,
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 20,
-                                              vertical: 10,
-                                            ),
-                                            child: Container(
-                                              color: Colors.grey,
-                                              height: 1,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 10,
-                                            ),
-                                            child: Text(
-                                              "${snapshot.data.toString()}\n",
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
+                                          child: Container(
+                                            width: 270,
+                                            height: 70,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.shade200,
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(20),
                                               ),
                                             ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                        left: 12,
+                                                        top: 15,
+                                                      ),
+                                                      child: Text(
+                                                        "nome: ${controller.list(snapshot.data.toString())}",
+                                                        style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                        left: 12,
+                                                        top: 10,
+                                                        bottom: 10,
+                                                      ),
+                                                      child: Text(
+                                                        // "${snapshot.data.toString()}\n",
+                                                        "valor: R\$300,00",
+                                                        style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Container(
+                                                    child: IconButton(
+                                                      onPressed: () => null,
+                                                      icon: Icon(
+                                                        Icons.delete,
+                                                        color: Colors.red,
+                                                      ),
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: Color.fromARGB(
+                                                          255, 255, 205, 205),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                        Radius.circular(10),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+
+                                          // Text(
+                                          //   "${snapshot.data.toString()}\n",
+                                          //   style: TextStyle(
+                                          //     fontSize: 20,
+                                          //     fontWeight: FontWeight.bold,
+                                          //   ),
+                                          // ),
                                           ),
-                                        ],
-                                      ),
-                                    )
-                                  : SizedBox.shrink(),
+                                    ],
+                                  ),
+                                )
+                              : SizedBox.shrink(),
                         );
                       },
                     );
