@@ -15,6 +15,8 @@ class ResultInsertsWidget extends StatefulWidget {
 
 class _ResultInsertsWidgetState
     extends ModularState<ResultInsertsWidget, InsertController> {
+  int aux = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -77,7 +79,7 @@ class _ResultInsertsWidgetState
               itemBuilder: (context, index) {
                 return ValueListenableBuilder(
                   valueListenable: controller.newList,
-                  builder: (context, value, child) {
+                  builder: (context, List<List<dynamic>> value, child) {
                     return FutureBuilder(
                       future: controller
                           .listMap(
@@ -89,124 +91,115 @@ class _ResultInsertsWidgetState
                         context,
                         AsyncSnapshot<List<List<dynamic>>> snapshot,
                       ) {
-                        // if (snapshot.hasData == true) {
-                        //   snapshot.data!.clear();
-                        //   // snapshot.data!.add(controller.newList.value);
-                        // }
+                        if (snapshot.hasData != true) {
+                          return SizedBox.shrink();
+                        }
 
-                        if (snapshot.hasData == true) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 25,
-                              vertical: 10,
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                      bottom: 10,
+                        if (aux < snapshot.data!.length) {
+                          aux++;
+                          controller.newList.value = snapshot.data!;
+                          return SizedBox.shrink();
+                        }
+
+                        print(aux);
+
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 25,
+                            vertical: 10,
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  bottom: 10,
+                                ),
+                                child: Container(
+                                  width: 270,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20),
                                     ),
-                                    child: Container(
-                                      width: 270,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey.shade200,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(20),
-                                        ),
-                                      ),
-                                      child: Row(
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  left: 12,
-                                                  top: 15,
-                                                ),
-                                                child: Text(
-                                                  // 0 1
-                                                  // 1 1
-                                                  controller.indexKey.value >=
-                                                          controller
-                                                                  .keyInserts
-                                                                  .value
-                                                                  .length -
-                                                              1
-                                                      ? "nome: ${controller.keyInserts.value[controller.indexKey.value]}"
-                                                      : "nome: ${controller.keyInserts.value[controller.indexKey.value++]}",
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              left: 12,
+                                              top: 15,
+                                            ),
+                                            child: Text(
+                                              controller.indexKey.value <
+                                                      controller.newList.value[0][0].length -
+                                                          1
+                                                  ? "nome: ${controller.keyInserts.value[controller.indexKey.value++]}"
+                                                  : "nome: ${controller.keyInserts.value[controller.indexKey.value]}",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  left: 12,
-                                                  top: 10,
-                                                  bottom: 10,
-                                                ),
-                                                child: Text(
-                                                  controller.indexValue.value >=
-                                                          controller
-                                                                  .valueInserts
-                                                                  .value
-                                                                  .length -
-                                                              1
-                                                      ? "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value]}"
-                                                      : "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value++]}",
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Container(
-                                              child: IconButton(
-                                                onPressed: () => null,
-                                                icon: Icon(
-                                                  Icons.delete,
-                                                  color: Colors.red,
-                                                ),
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color: Color.fromARGB(
-                                                    255, 255, 205, 205),
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(10),
-                                                ),
+                                            padding: const EdgeInsets.only(
+                                              left: 12,
+                                              top: 10,
+                                              bottom: 10,
+                                            ),
+                                            child: Text(
+                                              controller.indexValue.value <
+                                                      controller.newList.value[0][1].length -
+                                                          1
+                                                  ? "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value++]}"
+                                                  : "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value]}",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                    )
-
-                                    // Text(
-                                    //   "${snapshot.data.toString()}\n",
-                                    //   style: TextStyle(
-                                    //     fontSize: 20,
-                                    //     fontWeight: FontWeight.bold,
-                                    //   ),
-                                    // ),
-                                    ),
-                              ],
-                            ),
-                          );
-                        } else {
-                          return SizedBox.shrink();
-                        }
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          child: IconButton(
+                                            onPressed: () => null,
+                                            icon: Icon(
+                                              Icons.delete,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: Color.fromARGB(
+                                              255,
+                                              255,
+                                              205,
+                                              205,
+                                            ),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
                       },
                     );
                   },
