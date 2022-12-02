@@ -89,10 +89,10 @@ class _ResultInsertsWidgetState
                         context,
                         AsyncSnapshot<List<List<dynamic>>> snapshot,
                       ) {
-                        if (snapshot.hasData == true) {
-                          snapshot.data!.clear();
-                          // snapshot.data!.add(controller.newList.value);
-                        }
+                        // if (snapshot.hasData == true) {
+                        //   snapshot.data!.clear();
+                        //   // snapshot.data!.add(controller.newList.value);
+                        // }
 
                         if (snapshot.hasData == true) {
                           return Container(
@@ -131,22 +131,16 @@ class _ResultInsertsWidgetState
                                                   top: 15,
                                                 ),
                                                 child: Text(
-                                                  controller.indexKey.value <
+                                                  // 0 1
+                                                  // 1 1
+                                                  controller.indexKey.value >=
                                                           controller
                                                                   .keyInserts
                                                                   .value
                                                                   .length -
                                                               1
-                                                      ? "nome: ${controller.keyInserts.value[controller.indexKey.value++]}"
-                                                      : controller.indexKey
-                                                                  .value ==
-                                                              controller
-                                                                      .keyInserts
-                                                                      .value
-                                                                      .length -
-                                                                  1
-                                                          ? "nome: ${controller.keyInserts.value[controller.indexKey.value--]}"
-                                                          : "nome: ${controller.keyInserts.value[controller.indexKey.value = 0]}",
+                                                      ? "nome: ${controller.keyInserts.value[controller.indexKey.value]}"
+                                                      : "nome: ${controller.keyInserts.value[controller.indexKey.value++]}",
                                                   style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.bold,
@@ -160,22 +154,14 @@ class _ResultInsertsWidgetState
                                                   bottom: 10,
                                                 ),
                                                 child: Text(
-                                                  controller.indexValue.value <=
+                                                  controller.indexValue.value >=
                                                           controller
                                                                   .valueInserts
                                                                   .value
                                                                   .length -
                                                               1
-                                                      ? "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value++]}"
-                                                      : controller.indexValue
-                                                                  .value ==
-                                                              controller
-                                                                      .valueInserts
-                                                                      .value
-                                                                      .length -
-                                                                  1
-                                                          ? "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value--]}"
-                                                          : "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value = 0]}",
+                                                      ? "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value]}"
+                                                      : "valor: R\$ ${controller.valueInserts.value[controller.indexValue.value++]}",
                                                   style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.bold,
