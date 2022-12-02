@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/app/inserts/insert_controller.dart';
+import 'package:money_project/app/inserts/pages/result_inserts_widget.dart';
 import 'package:money_project/app/inserts/widgets/button_with_icon_widget.dart';
 import 'package:money_project/core/commons/widgets/field_multiple_choices_widget.dart';
 import 'package:money_project/core/commons/constants.dart';
@@ -52,160 +53,17 @@ class _ListInsertsPageState
               colorButton: Colors.grey.shade200,
               colorIcon: Colors.black87,
               colorLabel: Colors.black87,
-              myFunction: () => controller.getData(isTrue: controller.isTrue),
+              myFunction: () {
+                controller.indexKey.value = 0;
+                controller.indexValue.value = 0;
+                controller.getData(isTrue: controller.isTrue);
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
-              ),
-              child: Container(
-                width: 330,
-                height: 1000,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 200,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return ValueListenableBuilder(
-                      valueListenable: controller.isTrue,
-                      builder: (context, value, child) {
-                        return FutureBuilder(
-                          future: controller
-                              .listInserts(
-                                year: controller.year,
-                                month: controller.month,
-                              )
-                              .then((value) => value[index]),
-                          builder: (context, snapshot) => snapshot.hasData ==
-                                  true
-                              ? Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 25,
-                                    vertical: 10,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        "${controller.month.value} - ${controller.year.value}",
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 20,
-                                          vertical: 10,
-                                        ),
-                                        child: Container(
-                                          color: Colors.grey,
-                                          height: 1,
-                                        ),
-                                      ),
-                                      Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 10,
-                                          ),
-                                          child: Container(
-                                            width: 270,
-                                            height: 70,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey.shade200,
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(20),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                        left: 12,
-                                                        top: 15,
-                                                      ),
-                                                      child: Text(
-                                                        "nome: ${controller.list(snapshot.data.toString())}",
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                        left: 12,
-                                                        top: 10,
-                                                        bottom: 10,
-                                                      ),
-                                                      child: Text(
-                                                        // "${snapshot.data.toString()}\n",
-                                                        "valor: R\$300,00",
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Container(
-                                                    child: IconButton(
-                                                      onPressed: () => null,
-                                                      icon: Icon(
-                                                        Icons.delete,
-                                                        color: Colors.red,
-                                                      ),
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color: Color.fromARGB(
-                                                          255, 255, 205, 205),
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                        Radius.circular(10),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-
-                                          // Text(
-                                          //   "${snapshot.data.toString()}\n",
-                                          //   style: TextStyle(
-                                          //     fontSize: 20,
-                                          //     fontWeight: FontWeight.bold,
-                                          //   ),
-                                          // ),
-                                          ),
-                                    ],
-                                  ),
-                                )
-                              : SizedBox.shrink(),
-                        );
-                      },
-                    );
-                  },
-                ),
+            Visibility(
+              visible: controller.isTrue != true ? true : false,
+              child: ValueListenableBuilder(
+                valueListenable: controller.isTrue,
+                builder: (context, value, child) => ResultInsertsWidget(),
               ),
             ),
           ],

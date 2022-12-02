@@ -18,6 +18,11 @@ class InsertController {
   ValueNotifier<bool> stateInsertion = ValueNotifier(false);
   ValueNotifier<bool> isTrue = ValueNotifier(false);
   ValueNotifier<bool> isRemove = ValueNotifier(false);
+  ValueNotifier<List<String>> keyInserts = ValueNotifier([]);
+  ValueNotifier<List<dynamic>> valueInserts = ValueNotifier([]);
+  ValueNotifier<List<List<dynamic>>> newList = ValueNotifier([]);
+  ValueNotifier<int> indexKey = ValueNotifier(0);
+  ValueNotifier<int> indexValue = ValueNotifier(0);
 
   void insertData() async {
     await database.insertData(
@@ -44,15 +49,59 @@ class InsertController {
     }
   }
 
-  // Future<Map<String, dynamic>> listInserts({
-  //   required ValueNotifier<String> year,
-  //   required ValueNotifier<String> month,
-  // }) async {
+  Future<List<List<dynamic>>> listMap({
+    required ValueNotifier<String> year,
+    required ValueNotifier<String> month,
+  }) async {
+    keyInserts.value.clear();
+    valueInserts.value.clear();
 
-  // }
+    final list = database.getData(
+      year: year.value,
+    );
 
-  String list(String a) {
-    return "turma da mônica";
+    final Map jsonParsed = json.decode(list);
+    Map<String, dynamic> newValue = {};
+
+    jsonParsed.forEach((key, value) {
+      key == month.value ? newValue.addAll(value) : null;
+    });
+
+    newValue.forEach((key, value) {
+      keyInserts.value.add(key);
+      valueInserts.value.add(value);
+    });
+
+    newList.value.add([
+      keyInserts.value,
+      valueInserts.value,
+    ]);
+
+    return newList.value;
+  }
+
+  int lengthValues({
+    required ValueNotifier<String> year,
+    required ValueNotifier<String> month,
+  }) {
+    keyInserts.value.clear();
+
+    final list = database.getData(
+      year: year.value,
+    );
+
+    final Map jsonParsed = json.decode(list);
+    Map<String, dynamic> newValue = {};
+
+    jsonParsed.forEach((key, value) {
+      key == month.value ? newValue.addAll(value) : null;
+    });
+
+    newValue.forEach((key, value) {
+      keyInserts.value.add(key);
+    });
+
+    return keyInserts.value.length;
   }
 
   Future<List> listInserts({
