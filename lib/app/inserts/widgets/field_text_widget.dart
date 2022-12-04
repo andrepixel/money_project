@@ -44,7 +44,7 @@ class _FieldTextWidgetState extends State<FieldTextWidget> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 wordSpacing: 0.2,
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
           ),
@@ -68,7 +68,7 @@ class _FieldTextWidgetState extends State<FieldTextWidget> {
                   fontWeight: FontWeight.w500,
                 ),
                 hintText: widget.typeMoney != true
-                    ? "Escreva o nome da inserção aqui"
+                    ? "Escreva o nome da inserção"
                     : "R\$ 0,00",
                 contentPadding: EdgeInsets.only(
                   left: 23,

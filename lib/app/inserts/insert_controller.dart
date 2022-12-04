@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -18,6 +17,7 @@ class InsertController {
   ValueNotifier<bool> stateInsertion = ValueNotifier(false);
   ValueNotifier<bool> isTrue = ValueNotifier(false);
   ValueNotifier<bool> isRemove = ValueNotifier(false);
+  ValueNotifier<bool> isVisible = ValueNotifier(false);
 
   void insertData() async {
     await database.insertData(
@@ -37,22 +37,23 @@ class InsertController {
     isTrue.value = !isTrue.value;
   }
 
-  void removeData() {
+  void removeInsertion({required ValueNotifier<String> itemName}) {
     if (isRemove.value == false) {
-      database.removeData(year: year.value, month: month.value);
-      isRemove.value = true;
+      isRemove.value = database.removeInsertion(
+        year: year.value,
+        month: month.value,
+        itemName: itemName.value,
+      );
     }
   }
 
-  // Future<Map<String, dynamic>> listInserts({
-  //   required ValueNotifier<String> year,
-  //   required ValueNotifier<String> month,
-  // }) async {
-
-  // }
-
-  String list(String a) {
-    return "turma da mônica";
+  void removeInsertions() {
+    if (isRemove.value == false) {
+      isRemove.value = database.removeInsertions(
+        year: year.value,
+        month: month.value,
+      );
+    }
   }
 
   Future<List> listInserts({

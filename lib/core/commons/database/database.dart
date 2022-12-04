@@ -72,16 +72,44 @@ class Database extends ChangeNotifier {
     return text;
   }
 
-  void removeData({
+  bool removeInsertion({
+    required String year,
+    required String month,
+    required String itemName,
+  }) {
+    String values = sharedPreferences.getString(year) ?? "";
+
+    if (values.contains('"${itemName}":')) {
+      values = values.replaceAll(
+        RegExp('"$itemName": "(\\d)*",'),
+        '',
+      );
+
+      sharedPreferences.remove(year);
+      sharedPreferences.setString(year, values);
+
+      return true;
+    }
+    return false;
+  }
+
+  bool removeInsertions({
     required String year,
     required String month,
   }) {
-    var values = sharedPreferences.getString(year) ?? "";
+    String values = sharedPreferences.getString(year) ?? "";
 
-    values =
-        values.replaceAll(RegExp('"$month\": ({[^{}]+})'), '"$month\": {}');
+    if (values.contains('"$month\": ({[^{}]+})')) {
+      values = values.replaceAll(
+        RegExp('"$month\": ({[^{}]+})'),
+        '"$month\": {}',
+      );
 
-    sharedPreferences.remove(year);
-    sharedPreferences.setString(year, values);
+      sharedPreferences.remove(year);
+      sharedPreferences.setString(year, values);
+
+      return true;
+    }
+    return false;
   }
 }

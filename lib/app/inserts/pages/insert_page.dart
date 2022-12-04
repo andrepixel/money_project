@@ -29,7 +29,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu,
               listObjects: years,
-              nameField: "Selecione o Ano",
+              nameField: "Ano",
               variableController: controller.year,
             ),
             Divider(
@@ -39,7 +39,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu2,
               listObjects: months,
-              nameField: "Selecione o Mês",
+              nameField: "Mês",
               variableController: controller.month,
             ),
             Divider(
@@ -49,7 +49,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu3,
               listObjects: typesInsert,
-              nameField: "Selecione o tipo da inserção",
+              nameField: "Tipo da inserção",
               isTypeInsertion: true,
               variableController: controller.type,
             ),
@@ -87,7 +87,6 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 30,
-                vertical: 10,
               ),
               child: IntrinsicHeight(
                 child: SizedBox(
@@ -119,15 +118,21 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                             myFunction: () =>
                                 Modular.to.pushNamed("listInserts"),
                           ),
-                          // ButtonWithIconWidget(
-                          //   icon: Icons.remove_circle,
-                          //   label: "Remover",
-                          //   colorButton: Colors.grey.shade200,
-                          //   colorIcon: Colors.red.shade500,
-                          //   colorLabel: Colors.red.shade500,
-                          //   myFunction: () =>
-                          //       Modular.to.pushNamed("listRemoveInserts"),
-                          // ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ButtonWithIconWidget(
+                            icon: Icons.remove_circle,
+                            label: "Remover",
+                            colorButton: Colors.grey.shade200,
+                            colorIcon: Colors.red.shade500,
+                            colorLabel: Colors.red.shade500,
+                            myFunction: () =>
+                                Modular.to.pushNamed("menuremove"),
+                          ),
                         ],
                       )
                     ],
