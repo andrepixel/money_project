@@ -17,7 +17,7 @@ class ButtonIconTextWidget extends StatelessWidget {
         top: 50,
       ),
       child: SizedBox(
-        height: 150,
+        height: 160,
         width: 320,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,13 +41,13 @@ class ButtonIconTextWidget extends StatelessWidget {
                   icon: isOutput == "false"
                       ? Icon(
                           Icons.show_chart,
-                          color: Colors.green.shade100,
+                          color: Colors.white,
                           size: 40,
                           textDirection: TextDirection.ltr,
                         )
                       : Icon(
                           Icons.show_chart,
-                          color: Colors.red.shade100,
+                          color: Colors.white,
                           size: 40,
                         ),
                   label: isOutput == "false"
@@ -74,7 +74,7 @@ class ButtonIconTextWidget extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: isOutput == "false"
                   ? Text(
-                      "Que tal saber, os seus lucros?\nO gráfico de entradas, mostra o que realmente entra para o seu bolso,\nem cada mês.",
+                      "Que tal saber, os seus lucros?\nO gráfico de entradas, mostra o que realmente entra para\no seu bolso, em cada mês.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
@@ -83,7 +83,7 @@ class ButtonIconTextWidget extends StatelessWidget {
                       ),
                     )
                   : Text(
-                      "Será que vocês está gastando muito? O gráfico de saídas, mostra o que realmente sai do seu bolso,\nem cada mês.",
+                      "Será que vocês está gastando muito? O gráfico de saídas, mostra o que realmente sai\ndo seu bolso, em cada mês.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,

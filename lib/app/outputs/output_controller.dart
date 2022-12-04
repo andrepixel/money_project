@@ -21,7 +21,8 @@ class OutputController extends ChangeNotifier {
   ValueNotifier<String> initialValueButtonMenu = ValueNotifier("2022");
   ValueNotifier<List> listMonthsValues = ValueNotifier([]);
   ValueNotifier<List> listValues = ValueNotifier([]);
-  YearValueNotifier year = YearValueNotifier("2022");
+  ValueNotifier<List<List<double>>> valuesMonths = ValueNotifier([]);
+  ValueNotifier<String> year = YearValueNotifier("2022");
 
   void setData(
     dynamic value,
@@ -44,11 +45,8 @@ class OutputController extends ChangeNotifier {
     }
 
     year.value = variableController.value;
-
-    print("---- ${variableController.value}");
   }
 
-  //String year
   void getData() {
     if (year.value != "2022") {
       backupYear.value = year.value;
@@ -79,6 +77,17 @@ class OutputController extends ChangeNotifier {
     } else {
       return sumValuesYear / 2;
     }
+  }
+
+  void getValuesMonths() {
+    String valuesString = database.getData(year: year.value);
+
+    valuesString = valuesString.replaceAll('{"', '"');
+    valuesString = valuesString.replaceAll('}}', '}');
+    
+    valuesString = valuesString.replaceAll('}}', '}');
+
+    print(valuesString);
   }
 
   List getMonthsOutput() {

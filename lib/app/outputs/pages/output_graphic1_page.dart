@@ -9,19 +9,20 @@ import 'package:money_project/app/outputs/widgets/left_title_widget.dart';
 import 'package:money_project/app/outputs/widgets/list_fl_spot.dart';
 import 'package:money_project/core/commons/widgets/component_pop_widget.dart';
 
-class OutputPage extends StatefulWidget {
+class OutputGraphic1Page extends StatefulWidget {
   String isOutput;
 
-  OutputPage({
+  OutputGraphic1Page({
     Key? key,
     required this.isOutput,
   });
 
   @override
-  State<OutputPage> createState() => _OutputPageState();
+  State<OutputGraphic1Page> createState() => _OutputGraphic1PageState();
 }
 
-class _OutputPageState extends ModularState<OutputPage, OutputController> {
+class _OutputGraphic1PageState
+    extends ModularState<OutputGraphic1Page, OutputController> {
   @override
   void initState() {
     if (widget.isOutput == "false") {
