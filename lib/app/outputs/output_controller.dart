@@ -21,7 +21,18 @@ class OutputController extends ChangeNotifier {
   ValueNotifier<String> initialValueButtonMenu = ValueNotifier("2022");
   ValueNotifier<List> listMonthsValues = ValueNotifier([]);
   ValueNotifier<List> listValues = ValueNotifier([]);
-  ValueNotifier<List<List<double>>> valuesMonths = ValueNotifier([]);
+  ValueNotifier<List<List<double>>> valuesMonthsString = ValueNotifier(
+    List.filled(
+      12,
+      [0],
+    ),
+  );
+  // ValueNotifier<List<List<double>>> valuesMonthsDouble = ValueNotifier(
+  //   List.filled(
+  //     12,
+  //     [0],
+  //   ),
+  // );
   ValueNotifier<String> year = YearValueNotifier("2022");
 
   void setData(
@@ -84,10 +95,58 @@ class OutputController extends ChangeNotifier {
 
     valuesString = valuesString.replaceAll('{"', '"');
     valuesString = valuesString.replaceAll('}}', '}');
-    
-    valuesString = valuesString.replaceAll('}}', '}');
 
-    print(valuesString);
+    valuesString = valuesString.replaceAll('}}', '}');
+    valuesString = valuesString.replaceAll(RegExp('"[a-zA-Z]*": {}'), "");
+    valuesString = valuesString.replaceAll(RegExp('"[a-zA-Z]*":'), "");
+    valuesString = valuesString.replaceAll(RegExp(','), "");
+
+    if (valuesString.contains('"Março": {}')) {
+      valuesString = valuesString.replaceAll(RegExp('"Março": {}'), "");
+    }
+
+    valuesString = valuesString.trim();
+    valuesString = valuesString.replaceAll(RegExp('}  '), "");
+    valuesString = valuesString.replaceAll(RegExp('"}'), '"');
+    valuesString = valuesString.replaceAll(RegExp('""'), ',');
+    valuesString = valuesString.replaceAll(RegExp('"'), '');
+
+    String valuesNegativeString = "";
+    String valuesPositiveString = "";
+
+    valuesNegativeString = valuesString.replaceAll(RegExp('(?:^|(?<![-0-9]))([0-9]+)'), ',');
+    valuesNegativeString = valuesNegativeString.replaceAll(RegExp(',,'), '');
+
+    valuesPositiveString = valuesString.replaceAll(RegExp('-(\\d)*,'), '');
+
+    // print(valuesString);
+    print("neg -> ${valuesNegativeString}");
+    print("pos -> ${valuesPositiveString}");
+
+    // List<double> valuesNegative = [];
+    // List<double> valuesPositive = [];
+    // int aux = 0;
+
+    // for (var i = 0; i < valuesString.length; i++) {
+    //   if (i < valuesString.length - 1) {
+    //     if (valuesString[i] == '-') {
+    //       continue;
+    //     }
+
+    //     if (valuesString[i] == ',') {
+    //       valuesNegative[aux] = double.parse(valuesString[i]);
+    //       aux++;
+    //       continue;
+    //     }
+
+    //     valuesNegative[aux] = double.parse(valuesString[i]);
+    //     aux++;
+    //   }
+    // }
+
+    // valuesMonthsString.value[0][1] -= double.parse(valuesString[i]);
+
+    // valuesMonthsString.value[0][0] = valuesString[i];
   }
 
   List getMonthsOutput() {
