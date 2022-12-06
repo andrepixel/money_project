@@ -125,7 +125,7 @@ class _OutputGraphic2PageState
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Lucro',
+                                    'Receita',
                                     style: TextStyle(
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,
@@ -146,7 +146,7 @@ class _OutputGraphic2PageState
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Gasto',
+                                    'Despesa',
                                     style: TextStyle(
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w600,

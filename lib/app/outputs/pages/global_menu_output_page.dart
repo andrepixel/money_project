@@ -12,6 +12,11 @@ class GlobalMenuOutputPage extends StatefulWidget {
 
 class _GlobalMenuOutputPageState extends State<GlobalMenuOutputPage> {
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(

@@ -40,7 +40,7 @@ class _ListRemoveAllPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu,
               listObjects: years,
-              nameField: "Selecione o Ano",
+              nameField: "Ano",
               variableController: controller.year,
             ),
             Divider(
@@ -50,7 +50,7 @@ class _ListRemoveAllPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu2,
               listObjects: months,
-              nameField: "Selecione o Mês",
+              nameField: "Mês",
               variableController: controller.month,
             ),
             Divider(
@@ -70,38 +70,59 @@ class _ListRemoveAllPageState
               padding: const EdgeInsets.all(10.0),
               child: ValueListenableBuilder(
                 valueListenable: controller.isRemove,
-                builder: (context, value, child) {
-                  return Visibility(
-                    visible: controller.isRemove.value == true ? true : false,
-                    child: Container(
-                      width: 270,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade100,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.verified,
-                            size: 40,
-                            color: Colors.green.shade900,
-                          ),
-                          Text(
-                            "As inserções do mês de\n${controller.month.value} do ano ${controller.year.value},\n foram removidas\ncom sucesso!",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              wordSpacing: 1,
+                builder: (context, bool isRemove, child) {
+                  return ValueListenableBuilder(
+                    valueListenable: controller.isVisible,
+                    builder: (context, bool isVisible, child) {
+                      return ValueListenableBuilder(
+                        valueListenable: controller.month,
+                        builder: (context, String month, child) {
+                          return Visibility(
+                            visible: isVisible == true &&
+                                    month == controller.copyMonth.value
+                                ? true
+                                : false,
+                            child: Container(
+                              width: 270,
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: isRemove == true
+                                    ? Colors.green.shade100
+                                    : Colors.red.shade100,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    isRemove == true
+                                        ? Icons.verified
+                                        : Icons.remove_circle,
+                                    size: 40,
+                                    color: isRemove == true
+                                        ? Colors.green.shade500
+                                        : Colors.red.shade500,
+                                  ),
+                                  Text(
+                                    isRemove == true
+                                        ? "As inserções do mês de\n${controller.month.value} do ano ${controller.year.value},\n foram removidas\ncom sucesso!"
+                                        : "Não foi possível remover\nas inserções de\n${month} do ano ${controller.year.value},\nporque não existe\ninserções nesse mês!",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      wordSpacing: 1,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
+                          );
+                        },
+                      );
+                    },
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -81,7 +81,12 @@ class Database extends ChangeNotifier {
 
     if (values.contains('"${itemName}":')) {
       values = values.replaceAll(
-        RegExp('"$itemName": "(\\d)*",'),
+        RegExp('"${itemName}": "(\\d)*"},'),
+        '',
+      );
+
+      values = values.replaceAll(
+        RegExp('"${itemName}": "(\\d)*"}'),
         '',
       );
 
@@ -90,23 +95,24 @@ class Database extends ChangeNotifier {
 
       return true;
     }
+
     return false;
   }
 
-  bool removeInsertions({
+  Future<bool> removeInsertions({
     required String year,
     required String month,
-  }) {
+  }) async {
     String values = sharedPreferences.getString(year) ?? "";
 
-    if (values.contains('"$month\": ({[^{}]+})')) {
+    if (values.contains(RegExp('"${month}": ({[^{}]+})'))) {
       values = values.replaceAll(
-        RegExp('"$month\": ({[^{}]+})'),
-        '"$month\": {}',
+        RegExp('"${month}": ({[^{}]+})'),
+        '"${month}": {}',
       );
 
-      sharedPreferences.remove(year);
-      sharedPreferences.setString(year, values);
+      await sharedPreferences.remove(year);
+      await sharedPreferences.setString(year, values);
 
       return true;
     }

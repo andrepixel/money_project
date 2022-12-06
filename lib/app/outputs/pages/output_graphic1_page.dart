@@ -35,6 +35,13 @@ class _OutputGraphic1PageState
   }
 
   @override
+  void dispose() {
+    controller.listValues.dispose();
+    controller.year.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(

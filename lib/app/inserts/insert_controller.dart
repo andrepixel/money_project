@@ -11,6 +11,7 @@ class InsertController {
   ValueNotifier<String> initialValueButtonMenu2 = ValueNotifier("Janeiro");
   ValueNotifier<String> initialValueButtonMenu3 = ValueNotifier("Despesa");
   ValueNotifier<String> month = ValueNotifier("Janeiro");
+  ValueNotifier<String> copyMonth = ValueNotifier("Janeiro");
   ValueNotifier<String> type = ValueNotifier("-");
   ValueNotifier<String> itemName = ValueNotifier("0");
   ValueNotifier<String> itemValue = ValueNotifier("0");
@@ -38,21 +39,34 @@ class InsertController {
   }
 
   void removeInsertion({required ValueNotifier<String> itemName}) {
-    if (isRemove.value == false) {
+    if (isVisible.value == false) {
       isRemove.value = database.removeInsertion(
         year: year.value,
         month: month.value,
         itemName: itemName.value,
       );
+
+      isVisible.value = true;
     }
   }
 
   void removeInsertions() {
     if (isRemove.value == false) {
-      isRemove.value = database.removeInsertions(
-        year: year.value,
-        month: month.value,
-      );
+      copyMonth.value = month.value;
+
+      database
+          .removeInsertions(
+            year: year.value,
+            month: month.value,
+          )
+          .then(
+            (value) => isRemove.value = value,
+          );
+
+      isVisible.value = true;
+    } else {
+      isRemove.value = false;
+      isVisible.value = true;
     }
   }
 

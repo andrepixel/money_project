@@ -16,6 +16,13 @@ class OutputGraphic2MenuPage extends StatefulWidget {
 class _OutputGraphic2MenuPageState
     extends ModularState<OutputGraphic2MenuPage, OutputController> {
   @override
+  void dispose() {
+    controller.initialValueButtonMenu.dispose();
+    controller.year.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -51,7 +58,8 @@ class _OutputGraphic2MenuPageState
                               Colors.blue.shade500,
                             ),
                           ),
-                          onPressed: () => Modular.to.pushNamed("outputGraphic2Page"),
+                          onPressed: () =>
+                              Modular.to.pushNamed("outputGraphic2Page"),
                           icon: Icon(
                             Icons.bar_chart_outlined,
                             color: Colors.white,

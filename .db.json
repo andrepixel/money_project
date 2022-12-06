@@ -13,11 +13,3 @@
         }
     }
 }
-
-// fluxo de remoção 
-//    - listar todos os itens do mês
-//    - criar um widget para selecionar o campo 
-//        - selecionando o widget, remove o campo no mês
-
-// fluxo gráfico 
-// - https://github.com/imaNNeoFighT/fl_chart/blob/master/example/lib/bar_chart/samples/bar_chart_sample2.dart

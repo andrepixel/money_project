@@ -20,6 +20,13 @@ class OutputGraphic1MenuPage extends StatefulWidget {
 class _OutputGraphic1MenuPageState
     extends ModularState<OutputGraphic1MenuPage, OutputController> {
   @override
+  void dispose() {
+    controller.initialValueButtonMenu.dispose();
+    controller.year.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
