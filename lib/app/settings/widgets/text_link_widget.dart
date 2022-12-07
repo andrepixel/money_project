@@ -29,7 +29,7 @@ class TextLinkWidget extends StatelessWidget {
           ),
         ],
         style: TextStyle(
-          color: url.isEmpty ? Colors.black : Colors.blue.shade900,
+          color: url.isEmpty ? Colors.black : Colors.blue.shade500,
         ),
         recognizer: TapGestureRecognizer()
           ..onTap = url.isEmpty

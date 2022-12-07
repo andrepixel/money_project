@@ -29,7 +29,7 @@ class _ListInsertsPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu,
               listObjects: years,
-              nameField: "Selecione o Ano",
+              nameField: "Ano",
               variableController: controller.year,
             ),
             Divider(
@@ -39,7 +39,7 @@ class _ListInsertsPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu2,
               listObjects: months,
-              nameField: "Selecione o Mês",
+              nameField: "Mês",
               variableController: controller.month,
             ),
             Divider(
@@ -49,7 +49,7 @@ class _ListInsertsPageState
             ButtonWithIconWidget(
               icon: Icons.list,
               label: "Listar",
-              colorButton: Colors.grey.shade200,
+              colorButton: Colors.black12,
               colorIcon: Colors.black87,
               colorLabel: Colors.black87,
               myFunction: () => controller.getData(isTrue: controller.isTrue),
@@ -72,7 +72,7 @@ class _ListInsertsPageState
                   itemBuilder: (context, index) {
                     return ValueListenableBuilder(
                       valueListenable: controller.isTrue,
-                      builder: (context, value, child) {
+                      builder: (context, bool isTrue, child) {
                         return FutureBuilder(
                           future: controller
                               .listInserts(
@@ -91,7 +91,7 @@ class _ListInsertsPageState
                                           Text(
                                             "${controller.month.value} - ${controller.year.value}",
                                             style: TextStyle(
-                                              fontSize: 30,
+                                              fontSize: 28,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),

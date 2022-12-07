@@ -14,6 +14,7 @@ class InsertController {
   ValueNotifier<String> copyMonth = ValueNotifier("Janeiro");
   ValueNotifier<String> type = ValueNotifier("-");
   ValueNotifier<String> itemName = ValueNotifier("0");
+  ValueNotifier<String> copyItemName = ValueNotifier("");
   ValueNotifier<String> itemValue = ValueNotifier("0");
   ValueNotifier<bool> stateInsertion = ValueNotifier(false);
   ValueNotifier<bool> isTrue = ValueNotifier(false);
@@ -39,14 +40,31 @@ class InsertController {
   }
 
   void removeInsertion({required ValueNotifier<String> itemName}) {
-    if (isVisible.value == false) {
-      isRemove.value = database.removeInsertion(
-        year: year.value,
-        month: month.value,
-        itemName: itemName.value,
-      );
+    if (copyItemName.value == itemName.value) {
 
-      isVisible.value = true;
+    } else {
+      isRemove.value = false;
+
+      if (isRemove.value == false) {
+        copyItemName.value = itemName.value;
+
+        database
+            .removeInsertion(
+              year: year.value,
+              itemName: itemName.value,
+            )
+            .then(
+              (value) => isRemove.value = value,
+            );
+
+        isVisible.value = false;
+        isVisible.value = true;
+        isRemove.value = false;
+        isRemove.value = false;
+      } else {
+        isRemove.value = false;
+        isVisible.value = true;
+      }
     }
   }
 
@@ -63,6 +81,7 @@ class InsertController {
             (value) => isRemove.value = value,
           );
 
+      isVisible.value = false;
       isVisible.value = true;
     } else {
       isRemove.value = false;

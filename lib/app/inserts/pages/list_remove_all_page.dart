@@ -60,20 +60,20 @@ class _ListRemoveAllPageState
             ButtonWithIconWidget(
               icon: Icons.remove_circle,
               label: "Remover",
-              colorButton: Colors.grey.shade200,
+              colorButton: Colors.red.shade100,
               colorIcon: Colors.red.shade500,
               colorLabel: Colors.red.shade500,
               myFunction: () => controller.removeInsertions(),
             ),
             Divider(),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ValueListenableBuilder(
-                valueListenable: controller.isRemove,
-                builder: (context, bool isRemove, child) {
-                  return ValueListenableBuilder(
-                    valueListenable: controller.isVisible,
-                    builder: (context, bool isVisible, child) {
+            ValueListenableBuilder(
+              valueListenable: controller.isVisible,
+              builder: (context, bool isVisible, child) {
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: ValueListenableBuilder(
+                    valueListenable: controller.isRemove,
+                    builder: (context, bool isRemove, child) {
                       return ValueListenableBuilder(
                         valueListenable: controller.month,
                         builder: (context, String month, child) {
@@ -119,9 +119,9 @@ class _ListRemoveAllPageState
                         },
                       );
                     },
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ],
         ),

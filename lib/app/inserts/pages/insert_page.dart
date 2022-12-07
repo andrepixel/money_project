@@ -99,7 +99,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                           ButtonWithIconWidget(
                               icon: Icons.verified,
                               label: "Inserir",
-                              colorButton: Colors.grey.shade200,
+                              colorButton: Colors.green.shade100,
                               colorIcon: Colors.green.shade800,
                               colorLabel: Colors.green.shade800,
                               myFunction: () => controller.insertData()),
@@ -112,7 +112,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                           ButtonWithIconWidget(
                             icon: Icons.list,
                             label: "Listar",
-                            colorButton: Colors.grey.shade200,
+                            colorButton: Colors.black12,
                             colorIcon: Colors.black87,
                             colorLabel: Colors.black87,
                             myFunction: () =>
@@ -127,7 +127,7 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                           ButtonWithIconWidget(
                             icon: Icons.remove_circle,
                             label: "Remover",
-                            colorButton: Colors.grey.shade200,
+                            colorButton: Colors.red.shade100,
                             colorIcon: Colors.red.shade500,
                             colorLabel: Colors.red.shade500,
                             myFunction: () =>
