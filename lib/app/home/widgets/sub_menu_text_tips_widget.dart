@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SubMenuTextTipsWidget extends StatelessWidget {
-  final IconData icon;
+  final Icon icon;
   final String title;
   final String text;
 
@@ -20,9 +20,7 @@ class SubMenuTextTipsWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                icon,
-              ),
+              icon,
               Padding(
                 padding: const EdgeInsets.only(left: 5),
                 child: Text(

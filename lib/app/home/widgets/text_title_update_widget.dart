@@ -20,11 +20,20 @@ class TextTitleUpdateWidget extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
             ),
-            Icon(Icons.mood)
+            Icon(
+              Icons.new_releases,
+              color: Colors.amber,
+              shadows: [
+                Shadow(
+                  color: Colors.black,
+                  blurRadius: 1,
+                )
+              ],
+            )
           ],
         ),
         Row(
@@ -34,7 +43,7 @@ class TextTitleUpdateWidget extends StatelessWidget {
             Text(
               subTitle,
               style: TextStyle(
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.bold,
                 fontSize: 14,
                 fontStyle: FontStyle.italic,
               ),
@@ -48,5 +57,3 @@ class TextTitleUpdateWidget extends StatelessWidget {
     );
   }
 }
-
-

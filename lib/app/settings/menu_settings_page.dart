@@ -21,8 +21,8 @@ class MenuSettingsPage extends StatelessWidget {
           ListTile(
             title: Text("Sobre"),
             leading: Icon(Icons.error),
-            iconColor: Colors.black,
-            textColor: Colors.black,
+            iconColor: Colors.black87,
+            textColor: Colors.black87,
             onTap: () => Modular.to.navigate("/settings/about"),
           ),
           Divider(
@@ -32,7 +32,7 @@ class MenuSettingsPage extends StatelessWidget {
           Text(
             "Money Project Version 1.0.0",
             style: TextStyle(
-              color: Colors.grey.shade500,
+              color: Colors.grey,
             ),
           ),
         ],

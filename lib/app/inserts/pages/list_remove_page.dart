@@ -64,8 +64,8 @@ class _ListRemovePageState
               icon: Icons.remove_circle,
               label: "Remover",
               colorButton: Colors.red.shade100,
-              colorIcon: Colors.red.shade500,
-              colorLabel: Colors.red.shade500,
+              colorIcon: Colors.red,
+              colorLabel: Colors.red,
               myFunction: () {
                 controller.removeInsertion(itemName: controller.itemName);
                 controller.isVisible.value = true;
@@ -109,8 +109,8 @@ class _ListRemovePageState
                                           Icons.verified,
                                           size: 40,
                                           color: isRemove == true
-                                              ? Colors.green.shade500
-                                              : Colors.red.shade500,
+                                              ? Colors.green
+                                              : Colors.red,
                                         ),
                                       ),
                                       Text(

@@ -15,8 +15,8 @@ class OutputGraphic2Page extends StatefulWidget {
 
 class _OutputGraphic2PageState
     extends ModularState<OutputGraphic2Page, OutputController> {
-  final Color leftBarColor = Colors.green.shade500;
-  final Color rightBarColor = Colors.red.shade500;
+  final Color leftBarColor = Colors.green;
+  final Color rightBarColor = Colors.red;
   final double width = 7;
 
   late List<BarChartGroupData> rawBarGroups;
@@ -110,7 +110,7 @@ class _OutputGraphic2PageState
                                   child: Text(
                                     'Legenda',
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.black87,
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -128,14 +128,14 @@ class _OutputGraphic2PageState
                                     'Receita',
                                     style: TextStyle(
                                       color: Colors.black87,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
                                 Container(
                                   height: 10,
                                   width: 10,
-                                  color: Colors.green.shade500,
+                                  color: Colors.green,
                                 )
                               ],
                             ),
@@ -149,7 +149,7 @@ class _OutputGraphic2PageState
                                     'Despesa',
                                     style: TextStyle(
                                       color: Colors.black87,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
@@ -157,7 +157,7 @@ class _OutputGraphic2PageState
                                   height: 10,
                                   width: 10,
                                   decoration: BoxDecoration(
-                                    color: Colors.red.shade500,
+                                    color: Colors.red,
                                     borderRadius: BorderRadius.circular(3),
                                   ),
                                 )
@@ -247,7 +247,7 @@ class _OutputGraphic2PageState
                                   axisNameWidget: Text(
                                     "                Mêses",
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.black87,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   axisNameSize: 22,
@@ -288,7 +288,7 @@ class _OutputGraphic2PageState
 
   Widget leftTitles(double value, TitleMeta meta) {
     final style = TextStyle(
-      color: Colors.black,
+      color: Colors.black87,
       fontWeight: FontWeight.bold,
       fontSize: 14,
     );
@@ -325,7 +325,7 @@ class _OutputGraphic2PageState
       text = Text(
         listOfMonths[value.toInt()],
         style: TextStyle(
-          color: Colors.black,
+          color: Colors.black87,
           fontWeight: FontWeight.bold,
           fontSize: 14,
         ),

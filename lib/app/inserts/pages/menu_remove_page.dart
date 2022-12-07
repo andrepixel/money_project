@@ -38,7 +38,7 @@ class _MenuRemovePageState extends State<MenuRemovePage> {
                         child: ElevatedButton.icon(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.red.shade500,
+                              Colors.red,
                             ),
                           ),
                           onPressed: () => Modular.to.pushNamed("singleremove"),
@@ -91,7 +91,7 @@ class _MenuRemovePageState extends State<MenuRemovePage> {
                         child: ElevatedButton.icon(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.red.shade500,
+                              Colors.red,
                             ),
                           ),
                           onPressed: () => Modular.to.pushNamed("allremove"),

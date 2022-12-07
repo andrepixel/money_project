@@ -128,8 +128,8 @@ class _InsertPageState extends ModularState<InsertPage, InsertController> {
                             icon: Icons.remove_circle,
                             label: "Remover",
                             colorButton: Colors.red.shade100,
-                            colorIcon: Colors.red.shade500,
-                            colorLabel: Colors.red.shade500,
+                            colorIcon: Colors.red,
+                            colorLabel: Colors.red,
                             myFunction: () =>
                                 Modular.to.pushNamed("menuremove"),
                           ),

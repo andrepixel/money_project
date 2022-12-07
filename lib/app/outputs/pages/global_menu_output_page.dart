@@ -43,10 +43,10 @@ class _GlobalMenuOutputPageState extends State<GlobalMenuOutputPage> {
                         child: ElevatedButton.icon(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.blue.shade500,
+                              Colors.blue,
                             ),
                           ),
-                          onPressed: () => Modular.to.pushNamed("outputmenu"),
+                          onPressed: () => Modular.to.pushNamed("outputmenu1"),
                           icon: Icon(
                             Icons.add_chart,
                             color: Colors.white,
@@ -96,7 +96,7 @@ class _GlobalMenuOutputPageState extends State<GlobalMenuOutputPage> {
                         child: ElevatedButton.icon(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.purple.shade500,
+                              Colors.purple,
                             ),
                           ),
                           onPressed: () => Modular.to.pushNamed("outputmenu2"),

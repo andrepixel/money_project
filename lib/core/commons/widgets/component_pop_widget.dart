@@ -28,7 +28,7 @@ class ComponentPopWidget extends StatelessWidget {
                 onTap: () => Modular.to.navigate(path),
                 child: Icon(
                   Icons.arrow_back,
-                  color: Colors.black,
+                  color: Colors.black87,
                 ),
               ),
             ),

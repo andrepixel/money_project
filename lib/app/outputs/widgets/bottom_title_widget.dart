@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Widget BottomTitleWidgets(double value, TitleMeta meta) {
   const style = TextStyle(
     fontSize: 12,
-    color: Colors.black,
+    color: Colors.black87,
     fontWeight: FontWeight.bold,
   );
   String text;

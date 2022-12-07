@@ -7,8 +7,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      unselectedItemColor: Colors.black,
-      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black87,
+      selectedItemColor: Colors.black87,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
@@ -18,40 +18,83 @@ class BottomNavigationBarWidget extends StatelessWidget {
             onTap: () => Modular.to.navigate("/inserts/"),
             child: Icon(
               Icons.add_box,
+              color: Colors.green,
+              shadows: [
+                Shadow(
+                  color: Colors.black87,
+                  blurRadius: 0.1,
+                )
+              ],
             ),
           ),
           label: 'Inserção',
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.black87,
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
             onTap: () => Modular.to.navigate("/outputs/"),
-            child: Icon(Icons.equalizer),
+            child: Icon(
+              Icons.equalizer,
+              color: Colors.purple,
+              shadows: [
+                Shadow(
+                  color: Colors.black87,
+                  blurRadius: 0.1,
+                )
+              ],
+            ),
           ),
           label: 'Visualização',
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.black87,
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
             onTap: () => Modular.to.navigate("/notices/"),
-            child: Icon(Icons.public),
+            child: Icon(
+              Icons.public,
+              color: Colors.blue.shade900,
+              shadows: [
+                Shadow(
+                  color: Colors.black87,
+                  blurRadius: 0.1,
+                )
+              ],
+            ),
           ),
           label: 'Notícias',
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
             onTap: () => Modular.to.navigate("/articles/"),
-            child: Icon(Icons.newspaper),
+            child: Icon(
+              Icons.newspaper,
+              color: Colors.brown,
+              shadows: [
+                Shadow(
+                  color: Colors.black87,
+                  blurRadius: 0.1,
+                )
+              ],
+            ),
           ),
           label: 'Artigos',
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
             onTap: () => Modular.to.navigate("/settings/"),
-            child: Icon(Icons.settings),
+            child: Icon(
+              Icons.settings,
+              color: Colors.grey,
+              shadows: [
+                Shadow(
+                  color: Colors.black87,
+                  blurRadius: 1,
+                )
+              ],
+            ),
           ),
           label: 'Configuração',
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.black87,
         ),
       ],
     );

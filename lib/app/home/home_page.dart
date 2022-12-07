@@ -58,10 +58,20 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             Text(
                               "Seu Saldo  ",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Icon(Icons.star)
+                            Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                )
+                              ],
+                            )
                           ],
                         ),
                         Padding(
@@ -168,41 +178,93 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           Text(
                             "Dicas  ",
                             style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
                             ),
                           ),
                           Icon(
                             Icons.rocket_launch,
+                            color: Colors.blue,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 0.5,
+                                color: Colors.black87,
+                              )
+                            ],
                           )
                         ],
                       ),
-                      const SubMenuTextTipsWidget(
-                        icon: Icons.add_box,
+                      SubMenuTextTipsWidget(
+                        icon: Icon(
+                          Icons.add_box,
+                          color: Colors.green,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black87,
+                              blurRadius: 0.1,
+                            )
+                          ],
+                        ),
                         title: "Inserção",
                         text:
                             "É por aqui que você vai\nadicionar os seus gastos e ativos",
                       ),
-                      const SubMenuTextTipsWidget(
-                        icon: Icons.equalizer,
+                      SubMenuTextTipsWidget(
+                        icon: Icon(
+                          Icons.equalizer,
+                          color: Colors.purple,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black87,
+                              blurRadius: 0.1,
+                            )
+                          ],
+                        ),
                         title: "Visualização",
                         text:
                             "Que tal saber se você vai\nindo bem nas economias?",
                       ),
-                      const SubMenuTextTipsWidget(
-                        icon: Icons.public,
+                      SubMenuTextTipsWidget(
+                        icon: Icon(
+                          Icons.public,
+                          color: Colors.blue.shade900,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black87,
+                              blurRadius: 0.1,
+                            )
+                          ],
+                        ),
                         title: "Notícias",
                         text:
                             "Que tal saber das notícias relacionados, a economia em\ngeral, e ficar atenados sobre tudo?",
                       ),
-                      const SubMenuTextTipsWidget(
-                        icon: Icons.newspaper,
+                      SubMenuTextTipsWidget(
+                        icon: Icon(
+                          Icons.newspaper,
+                          color: Colors.brown,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black87,
+                              blurRadius: 0.1,
+                            )
+                          ],
+                        ),
                         title: "Artigos",
                         text:
                             "Aprender algo novo, é sempre\nbom. Vamos estudar um pouco sobre investimento, entre\noutras coisas legais?",
                       ),
-                      const SubMenuTextTipsWidget(
-                        icon: Icons.settings,
+                      SubMenuTextTipsWidget(
+                        icon: Icon(
+                          Icons.settings,
+                          color: Colors.grey,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black87,
+                              blurRadius: 1,
+                            )
+                          ],
+                        ),
                         title: "Configuração",
                         text:
                             "Se precisar fazer ajustes\nadicionais, ou saber alguma informação extra, é por aqui.",

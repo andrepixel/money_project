@@ -55,7 +55,7 @@ class _OutputGraphic2MenuPageState
                         child: ElevatedButton.icon(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.blue.shade500,
+                              Colors.blue,
                             ),
                           ),
                           onPressed: () =>

@@ -24,12 +24,12 @@ class TextLinkWidget extends StatelessWidget {
           TextSpan(
             text: subText,
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.black87,
             ),
           ),
         ],
         style: TextStyle(
-          color: url.isEmpty ? Colors.black : Colors.blue.shade500,
+          color: url.isEmpty ? Colors.black87 : Colors.blue,
         ),
         recognizer: TapGestureRecognizer()
           ..onTap = url.isEmpty

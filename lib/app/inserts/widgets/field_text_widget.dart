@@ -75,7 +75,7 @@ class _FieldTextWidgetState extends State<FieldTextWidget> {
                 ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: Colors.black,
+                    color: Colors.black87,
                   ),
                   borderRadius: BorderRadius.circular(
                     20,
