@@ -35,9 +35,9 @@ class ButtonIconTextWidget extends StatelessWidget {
                     ),
                   ),
                   onPressed: () => isOutput == "false"
-                      ? Modular.to.pushNamed("outputPage/", arguments: isOutput)
+                      ? Modular.to.pushNamed("outputGraphic1Page/", arguments: isOutput)
                       : Modular.to
-                          .pushNamed("outputPage/", arguments: isOutput),
+                          .pushNamed("outputGraphic1Page/", arguments: isOutput),
                   icon: isOutput == "false"
                       ? Icon(
                           Icons.show_chart,

@@ -39,7 +39,7 @@ class _OutputGraphic1MenuPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu,
               listObjects: years,
-              nameField: "Selecione o Ano",
+              nameField: "Ano",
               variableController: controller.year,
             ),
             ButtonIconTextWidget(

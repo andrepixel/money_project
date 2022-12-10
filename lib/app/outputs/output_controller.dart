@@ -22,19 +22,19 @@ class OutputController extends ChangeNotifier {
   ValueNotifier<String> initialValueButtonMenu = ValueNotifier("2022");
   ValueNotifier<List> listMonthsValues = ValueNotifier([]);
   ValueNotifier<List> listValues = ValueNotifier([]);
-  List<List<String>> valuesMonthsString = [
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
-    ["", ""],
+  List<List<double>> valuesMonthsDouble = [
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
   ];
   ValueNotifier<String> year = YearValueNotifier("2022");
 
@@ -95,57 +95,116 @@ class OutputController extends ChangeNotifier {
 
   void getValuesMonths() {
     String valuesString = database.getData(year: year.value);
+    String copyValuesString = valuesString;
 
     // Remove {} do inicio e fim
     valuesString = valuesString.substring(1, valuesString.length);
     valuesString = valuesString.substring(0, valuesString.length - 1);
+    valuesString = valuesString.replaceAll('},"', '}@"');
+
+    int auxChar = 0;
+    int aux = 0;
+    String auxString = "";
+    String valuesNegative = "";
+    String valuesPositive = "";
+    List<String> listValuesPositiveString = ["", "", "", "", ""];
+    List<String> listValuesNegativeString = ["", "", "", "", ""];
+    List<double> listValuesPositiveDouble = [0, 0, 0, 0, 0];
+    List<double> listValuesNegativeDouble = [0, 0, 0, 0, 0];
 
     for (var i = 0; i < months.length; i++) {
-      if (i < valuesMonthsString.length - 1) {
-        if (valuesString.contains(RegExp('"\\${months[i]}": {},"'))) {
-          valuesString =
-              valuesString.replaceAll(RegExp('"\\${months[i]}": {},"'), '"');
-          valuesMonthsString[i][0] = "2";
-          valuesMonthsString[i][1] = "3";
-          print('den $i -"${months[i]}": {},');
-          print('den $i ${valuesMonthsString[i]}');
-        } else {
-          print('$i - ${valuesMonthsString[i]}');
+      if (valuesString.contains(RegExp('@"\\${months[i]}": {}'))) {
+        valuesString = valuesString.replaceAll(
+          RegExp('@"\\${months[i]}": {}"'),
+          '"',
+        );
 
-          
+        valuesMonthsDouble[i][0] = 0;
+        valuesMonthsDouble[i][1] = 0;
 
-          valuesMonthsString[i][0] = "0";
-          valuesMonthsString[i][1] = "0";
-          print('$i - ${months[i]}');
+        continue;
+      }
+
+      if (valuesString.contains(RegExp('"\\${months[i]}": {}@"'))) {
+        valuesString = valuesString.replaceAll(
+          RegExp('"\\${months[i]}": {}@"'),
+          '"',
+        );
+
+        valuesMonthsDouble[i][0] = 0;
+        valuesMonthsDouble[i][1] = 0;
+
+        continue;
+      }
+
+      if (valuesString.contains('@"Dezembro": {}')) {
+        valuesString = valuesString.replaceAll(
+          '@"Dezembro": {}',
+          '',
+        );
+
+        valuesMonthsDouble[11][0] = 0;
+        valuesMonthsDouble[11][1] = 0;
+
+        continue;
+      }
+
+      if (valuesString.contains(RegExp('"Janeiro": {'))) {
+        auxChar = valuesString.indexOf("@");
+        auxString = valuesString.substring(0, auxChar);
+        auxString = auxString.replaceAll(RegExp('"|[a-zA-z]|: |{|}'), '');
+        valuesPositive = auxString.replaceAll(RegExp('-\\d'), '');
+        valuesPositive = valuesPositive.replaceAll(',,', ',');
+
+        if (valuesPositive[0] == ',') {
+          valuesPositive =
+              valuesPositive.substring(1, valuesPositive.length - 1);
         }
+
+        if (valuesPositive.lastIndexOf(',') == valuesPositive.length - 1) {
+          valuesPositive =
+              valuesPositive.substring(0, valuesPositive.length - 1);
+        }
+
+        for (var i = 0; i < valuesPositive.length; i++) {
+          if (valuesPositive[i] == ',') {
+            aux++;
+            continue;
+          }
+
+          listValuesPositiveString[aux] += valuesPositive[i];
+        }
+
+        for (var i = 0; i < listValuesPositiveString.length; i++) {
+          if (listValuesPositiveString[i].isEmpty) {
+            break;
+          }
+
+          listValuesPositiveDouble[i] =
+              double.parse(listValuesPositiveString[i]);
+        }
+
+        double resultValue = 0;
+
+        for (var i = 0; i < listValuesPositiveDouble.length; i++) {
+          resultValue += listValuesPositiveDouble[i];
+        }
+
+        valuesMonthsDouble[i][0] = resultValue;
+
+        aux = 0;
+        valuesString =
+            valuesString.substring(auxChar + 1, valuesString.length - 1);
+
+        auxChar = valuesString.indexOf("@");
       }
     }
 
     print(valuesString);
   }
-// valuesString = valuesString.replaceAll('{"', '"');
-  // valuesString = valuesString.replaceAll('}}', '}');
-
-  // valuesString = valuesString.replaceAll('}}', '}');
-  // valuesString = valuesString.replaceAll(RegExp('"[a-zA-Z]*": {}'), "");
-  // valuesString = valuesString.replaceAll(RegExp('"[a-zA-Z]*":'), "");
-  // valuesString = valuesString.replaceAll(RegExp(','), "");
-
-  // if (valuesString.contains('"Março": {}')) {
-  //   valuesString = valuesString.replaceAll(RegExp('"Março": {}'), "");
-  // }
-
-  // valuesString = valuesString.trim();
-  // valuesString = valuesString.replaceAll(RegExp('}  '), "");
-  // valuesString = valuesString.replaceAll(RegExp('"}'), '"');
-  // valuesString = valuesString.replaceAll(RegExp('""'), ',');
-  // valuesString = valuesString.replaceAll(RegExp('"'), '');
-  // print(valuesString);
-  // String valuesNegativeString = "";
-  // String valuesPositiveString = "";
 
   // valuesNegativeString =
-  //     valuesString.replaceAll(RegExp('(?:^|(?<![-0-9]))([0-9]+)'), ',');
+  //     valuesString.replaceAll(RegExp('(@:^|(@<![-0-9]))([0-9]+)'), ',');
   // valuesNegativeString = valuesNegativeString.replaceAll(RegExp(',,'), '');
 
   // valuesPositiveString = valuesString.replaceAll(RegExp('-(\\d)*,'), '');
@@ -153,8 +212,6 @@ class OutputController extends ChangeNotifier {
   // print("neg -> ${valuesNegativeString}");
   // print("pos -> ${valuesPositiveString}");
 
-  // List<String> valuesNegative = [];
-  // List<String> valuesPositive = [];
   // int aux = 0;
 
   // for (var i = 0; i < valuesNegativeString.length; i++) {
