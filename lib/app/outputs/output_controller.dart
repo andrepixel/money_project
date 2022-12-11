@@ -105,12 +105,14 @@ class OutputController extends ChangeNotifier {
     int auxChar = 0;
     int aux = 0;
     String auxString = "";
-    String valuesNegative = "";
     String valuesPositive = "";
+
     List<String> listValuesPositiveString = ["", "", ""];
     List<String> listValuesNegativeString = ["", "", ""];
     List<double> listValuesPositiveDouble = [0, 0, 0];
     List<double> listValuesNegativeDouble = [0, 0, 0];
+
+    double resultValueNegative = 0;
 
     for (var i = 0; i < months.length; i++) {
       if (valuesString.contains(RegExp('@"\\${months[i]}": {}'))) {
@@ -137,17 +139,54 @@ class OutputController extends ChangeNotifier {
 
       if (auxChar != -1) {
         auxString = valuesString.substring(0, auxChar);
-      } else {
-        print("");
       }
 
       auxString = auxString.replaceAll(RegExp('"|[a-zA-z]|: |{|}|ç'), '');
+
+      for (var i = 0; i < auxString.length; i++) {
+        if (i > 0) {
+          if (!auxString[i].contains(",") && !auxString[i].contains("-")) {
+            if (listValuesNegativeString[aux].contains("-")) {
+              listValuesNegativeString[aux] += auxString[i];
+              aux++;
+              continue;
+            }
+          }
+        }
+
+        if (auxString[i].contains(",")) {
+          continue;
+        }
+
+        if (auxString[i].contains("-")) {
+          listValuesNegativeString[aux] = auxString[i];
+          continue;
+        }
+      }
+
+      for (var i = 0; i < listValuesNegativeString.length; i++) {
+        if (listValuesNegativeString[i].isNotEmpty) {
+          listValuesNegativeDouble[i] =
+              double.parse(listValuesNegativeString[i]);
+        }
+      }
+
+      for (var i = 0; i < listValuesNegativeDouble.length; i++) {
+        resultValueNegative += listValuesNegativeDouble[i];
+      }
+
+      valuesMonthsDouble[i][1] = resultValueNegative;
+
+      for (var i = 0; i < listValuesNegativeString.length; i++) {
+        listValuesNegativeString[i] = "";
+      }
+
+      for (var i = 0; i < listValuesNegativeDouble.length; i++) {
+        listValuesNegativeDouble[i] = 0;
+      }
+
       valuesPositive = auxString.replaceAll(RegExp('-\\d'), '');
       valuesPositive = valuesPositive.replaceAll(',,', ',');
-
-      if (valuesPositive == "2") {
-        print(valuesPositive);
-      }
 
       if (valuesPositive.isNotEmpty) {
         if (valuesPositive[0] == ',') {
@@ -169,7 +208,7 @@ class OutputController extends ChangeNotifier {
 
         for (var i = 0; i < listValuesPositiveString.length; i++) {
           if (listValuesPositiveString[i].isEmpty) {
-            break;
+            continue;
           }
 
           listValuesPositiveDouble[i] =
