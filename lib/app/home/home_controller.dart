@@ -231,7 +231,7 @@ class HomeController {
       return sumValueString;
     }
 
-    return "";
+    return trimValues;
   }
 
   String adjustValueNegative(

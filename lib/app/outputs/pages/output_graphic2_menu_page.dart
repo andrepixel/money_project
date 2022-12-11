@@ -17,8 +17,6 @@ class _OutputGraphic2MenuPageState
     extends ModularState<OutputGraphic2MenuPage, OutputController> {
   @override
   void dispose() {
-    controller.initialValueButtonMenu.dispose();
-    controller.year.dispose();
     super.dispose();
   }
 
@@ -35,7 +33,7 @@ class _OutputGraphic2MenuPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu,
               listObjects: years,
-              nameField: "Selecione o Ano",
+              nameField: "Ano",
               variableController: controller.year,
             ),
             Padding(

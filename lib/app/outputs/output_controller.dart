@@ -23,18 +23,18 @@ class OutputController extends ChangeNotifier {
   ValueNotifier<List> listMonthsValues = ValueNotifier([]);
   ValueNotifier<List> listValues = ValueNotifier([]);
   List<List<double>> valuesMonthsDouble = [
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
+    [12, 12],
   ];
   ValueNotifier<String> year = YearValueNotifier("2022");
 
@@ -107,63 +107,55 @@ class OutputController extends ChangeNotifier {
     String auxString = "";
     String valuesNegative = "";
     String valuesPositive = "";
-    List<String> listValuesPositiveString = ["", "", "", "", ""];
-    List<String> listValuesNegativeString = ["", "", "", "", ""];
-    List<double> listValuesPositiveDouble = [0, 0, 0, 0, 0];
-    List<double> listValuesNegativeDouble = [0, 0, 0, 0, 0];
+    List<String> listValuesPositiveString = ["", "", ""];
+    List<String> listValuesNegativeString = ["", "", ""];
+    List<double> listValuesPositiveDouble = [0, 0, 0];
+    List<double> listValuesNegativeDouble = [0, 0, 0];
 
     for (var i = 0; i < months.length; i++) {
       if (valuesString.contains(RegExp('@"\\${months[i]}": {}'))) {
         valuesString = valuesString.replaceAll(
-          RegExp('@"\\${months[i]}": {}"'),
-          '"',
-        );
-
-        valuesMonthsDouble[i][0] = 0;
-        valuesMonthsDouble[i][1] = 0;
-
-        continue;
-      }
-
-      if (valuesString.contains(RegExp('"\\${months[i]}": {}@"'))) {
-        valuesString = valuesString.replaceAll(
-          RegExp('"\\${months[i]}": {}@"'),
-          '"',
-        );
-
-        valuesMonthsDouble[i][0] = 0;
-        valuesMonthsDouble[i][1] = 0;
-
-        continue;
-      }
-
-      if (valuesString.contains('@"Dezembro": {}')) {
-        valuesString = valuesString.replaceAll(
-          '@"Dezembro": {}',
+          RegExp('@"\\${months[i]}": {}'),
           '',
         );
 
-        valuesMonthsDouble[11][0] = 0;
-        valuesMonthsDouble[11][1] = 0;
-
-        continue;
+        valuesMonthsDouble[i][0] = 0;
+        valuesMonthsDouble[i][1] = 0;
       }
 
-      if (valuesString.contains(RegExp('"Janeiro": {'))) {
-        auxChar = valuesString.indexOf("@");
-        auxString = valuesString.substring(0, auxChar);
-        auxString = auxString.replaceAll(RegExp('"|[a-zA-z]|: |{|}'), '');
-        valuesPositive = auxString.replaceAll(RegExp('-\\d'), '');
-        valuesPositive = valuesPositive.replaceAll(',,', ',');
+      if (valuesString.contains(RegExp('"\\${months[i]}": {}@'))) {
+        valuesString = valuesString.replaceAll(
+          RegExp('"\\${months[i]}": {}@'),
+          '',
+        );
 
+        valuesMonthsDouble[i][0] = 0;
+        valuesMonthsDouble[i][1] = 0;
+      }
+
+      auxChar = valuesString.indexOf(RegExp('@'));
+
+      if (auxChar != -1) {
+        auxString = valuesString.substring(0, auxChar);
+      } else {
+        print("");
+      }
+
+      auxString = auxString.replaceAll(RegExp('"|[a-zA-z]|: |{|}|ç'), '');
+      valuesPositive = auxString.replaceAll(RegExp('-\\d'), '');
+      valuesPositive = valuesPositive.replaceAll(',,', ',');
+
+      if (valuesPositive == "2") {
+        print(valuesPositive);
+      }
+
+      if (valuesPositive.isNotEmpty) {
         if (valuesPositive[0] == ',') {
-          valuesPositive =
-              valuesPositive.substring(1, valuesPositive.length - 1);
+          valuesPositive = valuesPositive.substring(1, valuesPositive.length);
         }
 
-        if (valuesPositive.lastIndexOf(',') == valuesPositive.length - 1) {
-          valuesPositive =
-              valuesPositive.substring(0, valuesPositive.length - 1);
+        if (valuesPositive.lastIndexOf(',') == valuesPositive.length) {
+          valuesPositive = valuesPositive.substring(0, valuesPositive.length);
         }
 
         for (var i = 0; i < valuesPositive.length; i++) {
@@ -193,10 +185,45 @@ class OutputController extends ChangeNotifier {
         valuesMonthsDouble[i][0] = resultValue;
 
         aux = 0;
-        valuesString =
-            valuesString.substring(auxChar + 1, valuesString.length - 1);
+        valuesString = valuesString.substring(auxChar + 1, valuesString.length);
 
-        auxChar = valuesString.indexOf("@");
+        auxChar = valuesString.indexOf(RegExp('@'));
+
+        for (var i = 0; i < listValuesPositiveString.length; i++) {
+          listValuesPositiveString[i] = "";
+        }
+
+        for (var i = 0; i < listValuesPositiveDouble.length; i++) {
+          listValuesPositiveDouble[i] = 0;
+        }
+
+        for (var i = 0; i < valuesPositive.length; i++) {
+          valuesPositive = "";
+        }
+
+        continue;
+      }
+
+      valuesMonthsDouble[i][0] = 0.0;
+
+      aux = 0;
+
+      if (auxChar != -1) {
+        valuesString = valuesString.substring(auxChar + 1, valuesString.length);
+
+        auxChar = valuesString.indexOf(RegExp('@'));
+
+        continue;
+      }
+
+      valuesString = valuesString.substring(0, 0);
+
+      for (var i = 0; i < listValuesPositiveString.length; i++) {
+        listValuesPositiveString[i] = "";
+      }
+
+      for (var i = 0; i < valuesPositive.length; i++) {
+        valuesPositive = "";
       }
     }
 
