@@ -23,18 +23,18 @@ class OutputController extends ChangeNotifier {
   ValueNotifier<List> listMonthsValues = ValueNotifier([]);
   ValueNotifier<List> listValues = ValueNotifier([]);
   List<List<double>> valuesMonthsDouble = [
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
-    [12, 12],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
   ];
   ValueNotifier<String> year = YearValueNotifier("2022");
 
@@ -107,10 +107,62 @@ class OutputController extends ChangeNotifier {
     String auxString = "";
     String valuesPositive = "";
 
-    List<String> listValuesPositiveString = ["", "", ""];
-    List<String> listValuesNegativeString = ["", "", ""];
-    List<double> listValuesPositiveDouble = [0, 0, 0];
-    List<double> listValuesNegativeDouble = [0, 0, 0];
+    List<String> listValuesPositiveString = [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ];
+    List<String> listValuesNegativeString = [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ];
+    List<double> listValuesPositiveDouble = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ];
+    List<double> listValuesNegativeDouble = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ];
 
     double resultValueNegative = 0;
 
@@ -123,6 +175,8 @@ class OutputController extends ChangeNotifier {
 
         valuesMonthsDouble[i][0] = 0;
         valuesMonthsDouble[i][1] = 0;
+
+        continue;
       }
 
       if (valuesString.contains(RegExp('"\\${months[i]}": {}@'))) {
@@ -133,6 +187,8 @@ class OutputController extends ChangeNotifier {
 
         valuesMonthsDouble[i][0] = 0;
         valuesMonthsDouble[i][1] = 0;
+        
+        continue;
       }
 
       auxChar = valuesString.indexOf(RegExp('@'));
@@ -142,19 +198,25 @@ class OutputController extends ChangeNotifier {
       }
 
       auxString = auxString.replaceAll(RegExp('"|[a-zA-z]|: |{|}|ç'), '');
+      bool isNotNumberNegative = false;
 
       for (var i = 0; i < auxString.length; i++) {
+        if (!auxString.contains(RegExp('-\\d')) || auxString.isEmpty) {
+          isNotNumberNegative = true;
+          break;
+        }
+
         if (i > 0) {
           if (!auxString[i].contains(",") && !auxString[i].contains("-")) {
             if (listValuesNegativeString[aux].contains("-")) {
               listValuesNegativeString[aux] += auxString[i];
-              aux++;
               continue;
             }
           }
         }
 
         if (auxString[i].contains(",")) {
+          aux++;
           continue;
         }
 
@@ -176,6 +238,11 @@ class OutputController extends ChangeNotifier {
       }
 
       valuesMonthsDouble[i][1] = resultValueNegative;
+      resultValueNegative = 0;
+
+      if (isNotNumberNegative == true) {
+        valuesMonthsDouble[i][1] = 0;
+      }
 
       for (var i = 0; i < listValuesNegativeString.length; i++) {
         listValuesNegativeString[i] = "";
@@ -239,7 +306,6 @@ class OutputController extends ChangeNotifier {
         for (var i = 0; i < valuesPositive.length; i++) {
           valuesPositive = "";
         }
-
         continue;
       }
 
@@ -251,7 +317,6 @@ class OutputController extends ChangeNotifier {
         valuesString = valuesString.substring(auxChar + 1, valuesString.length);
 
         auxChar = valuesString.indexOf(RegExp('@'));
-
         continue;
       }
 
@@ -266,40 +331,14 @@ class OutputController extends ChangeNotifier {
       }
     }
 
-    print(valuesString);
+    for (var i = 0; i < valuesMonthsDouble.length; i++) {
+      if (valuesMonthsDouble[i][1] != '-0.0') {
+        valuesMonthsDouble[i][1] *= -1;
+      }
+    }
+    print("object");
   }
 
-  // valuesNegativeString =
-  //     valuesString.replaceAll(RegExp('(@:^|(@<![-0-9]))([0-9]+)'), ',');
-  // valuesNegativeString = valuesNegativeString.replaceAll(RegExp(',,'), '');
-
-  // valuesPositiveString = valuesString.replaceAll(RegExp('-(\\d)*,'), '');
-
-  // print("neg -> ${valuesNegativeString}");
-  // print("pos -> ${valuesPositiveString}");
-
-  // int aux = 0;
-
-  // for (var i = 0; i < valuesNegativeString.length; i++) {
-  //   if (i < valuesNegativeString.length - 1) {
-  //     if (valuesNegativeString[i] == '-') {
-  //       i++;
-
-  //       while (valuesNegativeString[i] != ",") {
-  //         valuesNegative[aux] += valuesNegativeString[i];
-  //       }
-
-  //       aux++;
-
-  //       continue;
-  //     }
-  //   }
-  // }
-
-  // print(valuesNegative);
-  // valuesMonthsString.value[0][1] -= double.parse(valuesString[i]);
-
-  // valuesMonthsString.value[0][0] = valuesString[i];
   List getMonthsOutput() {
     getData();
 

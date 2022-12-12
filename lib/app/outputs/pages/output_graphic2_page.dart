@@ -28,18 +28,66 @@ class _OutputGraphic2PageState
   void initState() {
     controller.getValuesMonths();
 
-    final barGroup1 = makeGroupData(0, 5, 12);
-    final barGroup2 = makeGroupData(1, 16, 12);
-    final barGroup3 = makeGroupData(2, 18, 5);
-    final barGroup4 = makeGroupData(3, 20, 16);
-    final barGroup5 = makeGroupData(4, 17, 6);
-    final barGroup6 = makeGroupData(5, 19, 1.5);
-    final barGroup7 = makeGroupData(6, 10, 1.5);
-    final barGroup8 = makeGroupData(7, 10, 1.5);
-    final barGroup9 = makeGroupData(8, 10, 1.5);
-    final barGroup10 = makeGroupData(9, 10, 1.5);
-    final barGroup11 = makeGroupData(10, 10, 1.5);
-    final barGroup12 = makeGroupData(11, 10, 1.5);
+    final barGroup1 = makeGroupData(
+      0,
+      controller.valuesMonthsDouble[0][0],
+      controller.valuesMonthsDouble[0][1],
+    );
+    final barGroup2 = makeGroupData(
+      1,
+      controller.valuesMonthsDouble[1][0],
+      controller.valuesMonthsDouble[1][1],
+    );
+    final barGroup3 = makeGroupData(
+      2,
+      controller.valuesMonthsDouble[2][0],
+      controller.valuesMonthsDouble[2][1],
+    );
+    final barGroup4 = makeGroupData(
+      3,
+      controller.valuesMonthsDouble[3][0],
+      controller.valuesMonthsDouble[3][1],
+    );
+    final barGroup5 = makeGroupData(
+      4,
+      controller.valuesMonthsDouble[4][0],
+      controller.valuesMonthsDouble[4][1],
+    );
+    final barGroup6 = makeGroupData(
+      5,
+      controller.valuesMonthsDouble[5][0],
+      controller.valuesMonthsDouble[5][1],
+    );
+    final barGroup7 = makeGroupData(
+      6,
+      controller.valuesMonthsDouble[6][0],
+      controller.valuesMonthsDouble[6][1],
+    );
+    final barGroup8 = makeGroupData(
+      7,
+      controller.valuesMonthsDouble[7][0],
+      controller.valuesMonthsDouble[7][1],
+    );
+    final barGroup9 = makeGroupData(
+      8,
+      controller.valuesMonthsDouble[8][0],
+      controller.valuesMonthsDouble[8][1],
+    );
+    final barGroup10 = makeGroupData(
+      9,
+      controller.valuesMonthsDouble[9][0],
+      controller.valuesMonthsDouble[9][1],
+    );
+    final barGroup11 = makeGroupData(
+      10,
+      controller.valuesMonthsDouble[10][0],
+      controller.valuesMonthsDouble[10][1],
+    );
+    final barGroup12 = makeGroupData(
+      11,
+      controller.valuesMonthsDouble[11][0],
+      controller.valuesMonthsDouble[11][1],
+    );
 
     final listInsertions = [
       barGroup1,
@@ -166,7 +214,7 @@ class _OutputGraphic2PageState
                         Expanded(
                           child: BarChart(
                             BarChartData(
-                              maxY: 20,
+                              maxY: 1000,
                               groupsSpace: 1000.00,
                               barTouchData: BarTouchData(
                                 touchTooltipData: BarTouchTooltipData(
@@ -256,7 +304,7 @@ class _OutputGraphic2PageState
                                   sideTitles: SideTitles(
                                     showTitles: true,
                                     reservedSize: 70,
-                                    interval: 10,
+                                    interval: 5000,
                                     getTitlesWidget: leftTitles,
                                   ),
                                 ),
@@ -291,10 +339,14 @@ class _OutputGraphic2PageState
     String text;
 
     if (value == 0) {
+      text = 'R\$0';
+    } else if (value <= 500) {
+      text = 'R\$500';
+    }else if (value >= 1000) {
       text = 'R\$1K';
-    } else if (value == 10) {
+    } else if (value == 5000) {
       text = 'R\$5K';
-    } else if (value >= 11) {
+    } else if (value >= 10000) {
       text = 'R\$10K+';
     } else {
       return Container();
