@@ -187,7 +187,7 @@ class OutputController extends ChangeNotifier {
 
         valuesMonthsDouble[i][0] = 0;
         valuesMonthsDouble[i][1] = 0;
-        
+
         continue;
       }
 
@@ -195,6 +195,10 @@ class OutputController extends ChangeNotifier {
 
       if (auxChar != -1) {
         auxString = valuesString.substring(0, auxChar);
+      }
+
+      if (i == 11) {
+        auxString = valuesString;
       }
 
       auxString = auxString.replaceAll(RegExp('"|[a-zA-z]|: |{|}|ç'), '');

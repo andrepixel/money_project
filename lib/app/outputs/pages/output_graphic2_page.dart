@@ -214,7 +214,7 @@ class _OutputGraphic2PageState
                         Expanded(
                           child: BarChart(
                             BarChartData(
-                              maxY: 1000,
+                              maxY: 5000,
                               groupsSpace: 1000.00,
                               barTouchData: BarTouchData(
                                 touchTooltipData: BarTouchTooltipData(
@@ -304,7 +304,7 @@ class _OutputGraphic2PageState
                                   sideTitles: SideTitles(
                                     showTitles: true,
                                     reservedSize: 70,
-                                    interval: 5000,
+                                    interval: 1000,
                                     getTitlesWidget: leftTitles,
                                   ),
                                 ),
@@ -340,14 +340,20 @@ class _OutputGraphic2PageState
 
     if (value == 0) {
       text = 'R\$0';
-    } else if (value <= 500) {
+    } else if (value == 500) {
       text = 'R\$500';
-    }else if (value >= 1000) {
-      text = 'R\$1K';
+    } else if (value == 1000) {
+      text = 'R\$1000';
+    } else if (value == 2000) {
+      text = 'R\$2000';
+    } else if (value == 3000) {
+      text = 'R\$3000';
+    } else if (value == 4000) {
+      text = 'R\$4000';
     } else if (value == 5000) {
-      text = 'R\$5K';
-    } else if (value >= 10000) {
-      text = 'R\$10K+';
+      text = 'R\$5000';
+    } else if (value == 10000) {
+      text = 'R\$10000';
     } else {
       return Container();
     }

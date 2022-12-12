@@ -93,7 +93,7 @@ class ArticleHandler extends StatelessWidget {
                       12.0,
                     ),
                     child: SizedBox(
-                      height: 30,
+                      height: 40,
                       child: Text(
                         title,
                         textAlign: TextAlign.center,

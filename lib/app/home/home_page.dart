@@ -242,7 +242,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         ),
                         title: "Notícias",
                         text:
-                            "Que tal saber das notícias relacionados, a economia em\ngeral, e ficar atenados sobre tudo?",
+                            "Que tal saber das notícias relacionados, a economia em geral,\n e ficar atenados sobre tudo?",
                       ),
                       SubMenuTextTipsWidget(
                         icon: Icon(
@@ -257,7 +257,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         ),
                         title: "Artigos",
                         text:
-                            "Aprender algo novo, é sempre\nbom. Vamos estudar um pouco sobre investimento, entre\noutras coisas legais?",
+                            "Aprender algo novo, é sempre\nbom. Vamos estudar um pouco\nsobre investimento, entre outras\ncoisas legais?",
                       ),
                       SubMenuTextTipsWidget(
                         icon: Icon(
@@ -272,7 +272,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         ),
                         title: "Configuração",
                         text:
-                            "Se precisar fazer ajustes\nadicionais, ou saber alguma informação extra, é por aqui.",
+                            "Se precisar fazer ajustes adicionais,\n ou saber alguma informação extra,\né por aqui.",
                       ),
                     ],
                   ),
