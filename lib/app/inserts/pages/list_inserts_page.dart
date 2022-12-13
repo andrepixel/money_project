@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/app/inserts/insert_controller.dart';
+import 'package:money_project/app/inserts/pages/result_inserts_widget.dart';
 import 'package:money_project/app/inserts/widgets/button_with_icon_widget.dart';
 import 'package:money_project/core/commons/widgets/field_multiple_choices_widget.dart';
 import 'package:money_project/core/commons/constants.dart';
@@ -52,7 +53,11 @@ class _ListInsertsPageState
               colorButton: Colors.black12,
               colorIcon: Colors.black87,
               colorLabel: Colors.black87,
-              myFunction: () => controller.getData(isTrue: controller.isTrue),
+              myFunction: () {
+                controller.indexKey.value = 0;
+                controller.indexValue.value = 0;
+                controller.getData(isTrue: controller.isTrue);
+              },
             ),
             Padding(
               padding: const EdgeInsets.only(

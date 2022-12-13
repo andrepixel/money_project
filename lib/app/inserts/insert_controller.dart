@@ -68,7 +68,7 @@ class InsertController {
     }
   }
 
-  void removeInsertions() {
+void removeInsertions() {
     if (isRemove.value == false) {
       copyMonth.value = month.value;
 
