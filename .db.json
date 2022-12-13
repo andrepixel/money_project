@@ -1,0 +1,15 @@
+{
+    "user":
+    {
+        "2022": {
+           "Janeiro": {
+            "Salário": 2000,
+            "Xbox": -3000
+           },
+           "Fevereiro": {
+            "Salário": 2000,
+            "Xbox": -3000
+           }
+        }
+    }
+}

@@ -7,7 +7,7 @@
         {
             "name": "money_project",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
         },
         {
             "name": "money_project (profile mode)",
