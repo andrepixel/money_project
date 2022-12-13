@@ -85,7 +85,7 @@ class HandlerNoticeWidget extends StatelessWidget {
                         noticeModel.title,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.bold,
                           fontSize: 14,
                           wordSpacing: 0.3,
                         ),

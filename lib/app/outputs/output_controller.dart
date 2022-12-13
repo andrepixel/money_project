@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:money_project/core/commons/constants.dart';
 
 import 'package:money_project/core/commons/database/database.dart';
 
@@ -21,7 +22,21 @@ class OutputController extends ChangeNotifier {
   ValueNotifier<String> initialValueButtonMenu = ValueNotifier("2022");
   ValueNotifier<List> listMonthsValues = ValueNotifier([]);
   ValueNotifier<List> listValues = ValueNotifier([]);
-  YearValueNotifier year = YearValueNotifier("2022");
+  List<List<double>> valuesMonthsDouble = [
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+  ];
+  ValueNotifier<String> year = YearValueNotifier("2022");
 
   void setData(
     dynamic value,
@@ -44,11 +59,8 @@ class OutputController extends ChangeNotifier {
     }
 
     year.value = variableController.value;
-
-    print("---- ${variableController.value}");
   }
 
-  //String year
   void getData() {
     if (year.value != "2022") {
       backupYear.value = year.value;
@@ -79,6 +91,256 @@ class OutputController extends ChangeNotifier {
     } else {
       return sumValuesYear / 2;
     }
+  }
+
+  void getValuesMonths() {
+    String valuesString = database.getData(year: year.value);
+    String copyValuesString = valuesString;
+
+    // Remove {} do inicio e fim
+    valuesString = valuesString.substring(1, valuesString.length);
+    valuesString = valuesString.substring(0, valuesString.length - 1);
+    valuesString = valuesString.replaceAll('},"', '}@"');
+
+    int auxChar = 0;
+    int aux = 0;
+    String auxString = "";
+    String valuesPositive = "";
+
+    List<String> listValuesPositiveString = [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ];
+    List<String> listValuesNegativeString = [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ];
+    List<double> listValuesPositiveDouble = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ];
+    List<double> listValuesNegativeDouble = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ];
+
+    double resultValueNegative = 0;
+
+    for (var i = 0; i < months.length; i++) {
+      if (valuesString.contains(RegExp('@"\\${months[i]}": {}'))) {
+        valuesString = valuesString.replaceAll(
+          RegExp('@"\\${months[i]}": {}'),
+          '',
+        );
+
+        valuesMonthsDouble[i][0] = 0;
+        valuesMonthsDouble[i][1] = 0;
+
+        continue;
+      }
+
+      if (valuesString.contains(RegExp('"\\${months[i]}": {}@'))) {
+        valuesString = valuesString.replaceAll(
+          RegExp('"\\${months[i]}": {}@'),
+          '',
+        );
+
+        valuesMonthsDouble[i][0] = 0;
+        valuesMonthsDouble[i][1] = 0;
+
+        continue;
+      }
+
+      auxChar = valuesString.indexOf(RegExp('@'));
+
+      if (auxChar != -1) {
+        auxString = valuesString.substring(0, auxChar);
+      }
+
+      if (i == 11) {
+        auxString = valuesString;
+      }
+
+      auxString = auxString.replaceAll(RegExp('"|[a-zA-z]|: |{|}|ç'), '');
+      bool isNotNumberNegative = false;
+
+      for (var i = 0; i < auxString.length; i++) {
+        if (!auxString.contains(RegExp('-\\d')) || auxString.isEmpty) {
+          isNotNumberNegative = true;
+          break;
+        }
+
+        if (i > 0) {
+          if (!auxString[i].contains(",") && !auxString[i].contains("-")) {
+            if (listValuesNegativeString[aux].contains("-")) {
+              listValuesNegativeString[aux] += auxString[i];
+              continue;
+            }
+          }
+        }
+
+        if (auxString[i].contains(",")) {
+          aux++;
+          continue;
+        }
+
+        if (auxString[i].contains("-")) {
+          listValuesNegativeString[aux] = auxString[i];
+          continue;
+        }
+      }
+
+      for (var i = 0; i < listValuesNegativeString.length; i++) {
+        if (listValuesNegativeString[i].isNotEmpty) {
+          listValuesNegativeDouble[i] =
+              double.parse(listValuesNegativeString[i]);
+        }
+      }
+
+      for (var i = 0; i < listValuesNegativeDouble.length; i++) {
+        resultValueNegative += listValuesNegativeDouble[i];
+      }
+
+      valuesMonthsDouble[i][1] = resultValueNegative;
+      resultValueNegative = 0;
+
+      if (isNotNumberNegative == true) {
+        valuesMonthsDouble[i][1] = 0;
+      }
+
+      for (var i = 0; i < listValuesNegativeString.length; i++) {
+        listValuesNegativeString[i] = "";
+      }
+
+      for (var i = 0; i < listValuesNegativeDouble.length; i++) {
+        listValuesNegativeDouble[i] = 0;
+      }
+
+      valuesPositive = auxString.replaceAll(RegExp('-\\d'), '');
+      valuesPositive = valuesPositive.replaceAll(',,', ',');
+
+      if (valuesPositive.isNotEmpty) {
+        if (valuesPositive[0] == ',') {
+          valuesPositive = valuesPositive.substring(1, valuesPositive.length);
+        }
+
+        if (valuesPositive.lastIndexOf(',') == valuesPositive.length) {
+          valuesPositive = valuesPositive.substring(0, valuesPositive.length);
+        }
+
+        for (var i = 0; i < valuesPositive.length; i++) {
+          if (valuesPositive[i] == ',') {
+            aux++;
+            continue;
+          }
+
+          listValuesPositiveString[aux] += valuesPositive[i];
+        }
+
+        for (var i = 0; i < listValuesPositiveString.length; i++) {
+          if (listValuesPositiveString[i].isEmpty) {
+            continue;
+          }
+
+          listValuesPositiveDouble[i] =
+              double.parse(listValuesPositiveString[i]);
+        }
+
+        double resultValue = 0;
+
+        for (var i = 0; i < listValuesPositiveDouble.length; i++) {
+          resultValue += listValuesPositiveDouble[i];
+        }
+
+        valuesMonthsDouble[i][0] = resultValue;
+
+        aux = 0;
+        valuesString = valuesString.substring(auxChar + 1, valuesString.length);
+
+        auxChar = valuesString.indexOf(RegExp('@'));
+
+        for (var i = 0; i < listValuesPositiveString.length; i++) {
+          listValuesPositiveString[i] = "";
+        }
+
+        for (var i = 0; i < listValuesPositiveDouble.length; i++) {
+          listValuesPositiveDouble[i] = 0;
+        }
+
+        for (var i = 0; i < valuesPositive.length; i++) {
+          valuesPositive = "";
+        }
+        continue;
+      }
+
+      valuesMonthsDouble[i][0] = 0.0;
+
+      aux = 0;
+
+      if (auxChar != -1) {
+        valuesString = valuesString.substring(auxChar + 1, valuesString.length);
+
+        auxChar = valuesString.indexOf(RegExp('@'));
+        continue;
+      }
+
+      valuesString = valuesString.substring(0, 0);
+
+      for (var i = 0; i < listValuesPositiveString.length; i++) {
+        listValuesPositiveString[i] = "";
+      }
+
+      for (var i = 0; i < valuesPositive.length; i++) {
+        valuesPositive = "";
+      }
+    }
+
+    for (var i = 0; i < valuesMonthsDouble.length; i++) {
+      if (valuesMonthsDouble[i][1] != '-0.0') {
+        valuesMonthsDouble[i][1] *= -1;
+      }
+    }
+    print("object");
   }
 
   List getMonthsOutput() {

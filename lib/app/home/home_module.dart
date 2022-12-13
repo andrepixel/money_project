@@ -8,10 +8,11 @@ import 'package:money_project/app/settings/settings_module.dart';
 class HomeModule extends Module {
   @override
   List<Bind> get binds => [
-     Bind.singleton(
+     Bind.lazySingleton(
       (i) => HomeController(),
     ),
   ];
+
 
   @override
   List<ModularRoute> routes = [

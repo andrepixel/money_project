@@ -30,7 +30,7 @@ class _ListInsertsPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu,
               listObjects: years,
-              nameField: "Selecione o Ano",
+              nameField: "Ano",
               variableController: controller.year,
             ),
             Divider(
@@ -40,7 +40,7 @@ class _ListInsertsPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu2,
               listObjects: months,
-              nameField: "Selecione o Mês",
+              nameField: "Mês",
               variableController: controller.month,
             ),
             Divider(
@@ -50,7 +50,7 @@ class _ListInsertsPageState
             ButtonWithIconWidget(
               icon: Icons.list,
               label: "Listar",
-              colorButton: Colors.grey.shade200,
+              colorButton: Colors.black12,
               colorIcon: Colors.black87,
               colorLabel: Colors.black87,
               myFunction: () {
@@ -59,11 +59,78 @@ class _ListInsertsPageState
                 controller.getData(isTrue: controller.isTrue);
               },
             ),
-            Visibility(
-              visible: controller.isTrue != true ? true : false,
-              child: ValueListenableBuilder(
-                valueListenable: controller.isTrue,
-                builder: (context, value, child) => ResultInsertsWidget(),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10,
+              ),
+              child: Container(
+                width: 330,
+                height: 1000,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 200,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return ValueListenableBuilder(
+                      valueListenable: controller.isTrue,
+                      builder: (context, bool isTrue, child) {
+                        return FutureBuilder(
+                          future: controller
+                              .listInserts(
+                                year: controller.year,
+                                month: controller.month,
+                              )
+                              .then((value) => value[index]),
+                          builder: (context, snapshot) =>
+                              snapshot.hasData == true
+                                  ? Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 25,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            "${controller.month.value} - ${controller.year.value}",
+                                            style: TextStyle(
+                                              fontSize: 28,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 20,
+                                              vertical: 10,
+                                            ),
+                                            child: Container(
+                                              color: Colors.grey,
+                                              height: 1,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 10,
+                                            ),
+                                            child: Text(
+                                              "${snapshot.data.toString()}\n",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : SizedBox.shrink(),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ],

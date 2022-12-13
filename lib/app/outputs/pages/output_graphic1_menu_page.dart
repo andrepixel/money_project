@@ -8,17 +8,24 @@ import 'package:money_project/core/commons/constants.dart';
 import 'package:money_project/core/commons/widgets/component_pop_widget.dart';
 import 'package:money_project/core/commons/widgets/field_multiple_choices_widget.dart';
 
-class OutputMenuPage extends StatefulWidget {
-  const OutputMenuPage({
+class OutputGraphic1MenuPage extends StatefulWidget {
+  const OutputGraphic1MenuPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<OutputMenuPage> createState() => _OutputMenuPageState();
+  State<OutputGraphic1MenuPage> createState() => _OutputGraphic1MenuPageState();
 }
 
-class _OutputMenuPageState
-    extends ModularState<OutputMenuPage, OutputController> {
+class _OutputGraphic1MenuPageState
+    extends ModularState<OutputGraphic1MenuPage, OutputController> {
+  @override
+  void dispose() {
+    controller.initialValueButtonMenu.dispose();
+    controller.year.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +39,7 @@ class _OutputMenuPageState
             FieldMultipleChoicesWidget(
               initialValue: controller.initialValueButtonMenu,
               listObjects: years,
-              nameField: "Selecione o Ano",
+              nameField: "Ano",
               variableController: controller.year,
             ),
             ButtonIconTextWidget(

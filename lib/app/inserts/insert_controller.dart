@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -12,17 +11,15 @@ class InsertController {
   ValueNotifier<String> initialValueButtonMenu2 = ValueNotifier("Janeiro");
   ValueNotifier<String> initialValueButtonMenu3 = ValueNotifier("Despesa");
   ValueNotifier<String> month = ValueNotifier("Janeiro");
+  ValueNotifier<String> copyMonth = ValueNotifier("Janeiro");
   ValueNotifier<String> type = ValueNotifier("-");
   ValueNotifier<String> itemName = ValueNotifier("0");
+  ValueNotifier<String> copyItemName = ValueNotifier("");
   ValueNotifier<String> itemValue = ValueNotifier("0");
   ValueNotifier<bool> stateInsertion = ValueNotifier(false);
   ValueNotifier<bool> isTrue = ValueNotifier(false);
   ValueNotifier<bool> isRemove = ValueNotifier(false);
-  ValueNotifier<List<String>> keyInserts = ValueNotifier([]);
-  ValueNotifier<List<dynamic>> valueInserts = ValueNotifier([]);
-  ValueNotifier<List<List<dynamic>>> newList = ValueNotifier([]);
-  ValueNotifier<int> indexKey = ValueNotifier(0);
-  ValueNotifier<int> indexValue = ValueNotifier(0);
+  ValueNotifier<bool> isVisible = ValueNotifier(false);
 
   void insertData() async {
     await database.insertData(
@@ -42,66 +39,54 @@ class InsertController {
     isTrue.value = !isTrue.value;
   }
 
-  void removeData() {
-    if (isRemove.value == false) {
-      database.removeData(year: year.value, month: month.value);
-      isRemove.value = true;
+  void removeInsertion({required ValueNotifier<String> itemName}) {
+    if (copyItemName.value == itemName.value) {
+
+    } else {
+      isRemove.value = false;
+
+      if (isRemove.value == false) {
+        copyItemName.value = itemName.value;
+
+        database
+            .removeInsertion(
+              year: year.value,
+              itemName: itemName.value,
+            )
+            .then(
+              (value) => isRemove.value = value,
+            );
+
+        isVisible.value = false;
+        isVisible.value = true;
+        isRemove.value = false;
+        isRemove.value = false;
+      } else {
+        isRemove.value = false;
+        isVisible.value = true;
+      }
     }
   }
 
-  Future<List<List<dynamic>>> listMap({
-    required ValueNotifier<String> year,
-    required ValueNotifier<String> month,
-  }) async {
-    keyInserts.value.clear();
-    valueInserts.value.clear();
+void removeInsertions() {
+    if (isRemove.value == false) {
+      copyMonth.value = month.value;
 
-    final list = database.getData(
-      year: year.value,
-    );
+      database
+          .removeInsertions(
+            year: year.value,
+            month: month.value,
+          )
+          .then(
+            (value) => isRemove.value = value,
+          );
 
-    final Map jsonParsed = json.decode(list);
-    Map<String, dynamic> newValue = {};
-
-    jsonParsed.forEach((key, value) {
-      key == month.value ? newValue.addAll(value) : null;
-    });
-
-    newValue.forEach((key, value) {
-      keyInserts.value.add(key);
-      valueInserts.value.add(value);
-    });
-
-    newList.value.add([
-      keyInserts.value,
-      valueInserts.value,
-    ]);
-
-    return newList.value;
-  }
-
-  int lengthValues({
-    required ValueNotifier<String> year,
-    required ValueNotifier<String> month,
-  }) {
-    keyInserts.value.clear();
-
-    final list = database.getData(
-      year: year.value,
-    );
-
-    final Map jsonParsed = json.decode(list);
-    Map<String, dynamic> newValue = {};
-
-    jsonParsed.forEach((key, value) {
-      key == month.value ? newValue.addAll(value) : null;
-    });
-
-    newValue.forEach((key, value) {
-      keyInserts.value.add(key);
-    });
-
-    return keyInserts.value.length;
+      isVisible.value = false;
+      isVisible.value = true;
+    } else {
+      isRemove.value = false;
+      isVisible.value = true;
+    }
   }
 
   Future<List> listInserts({

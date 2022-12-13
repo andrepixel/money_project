@@ -2,7 +2,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:money_project/app/inserts/insert_controller.dart';
 import 'package:money_project/app/inserts/pages/insert_page.dart';
 import 'package:money_project/app/inserts/pages/list_inserts_page.dart';
+import 'package:money_project/app/inserts/pages/list_remove_all_page.dart';
 import 'package:money_project/app/inserts/pages/list_remove_page.dart';
+import 'package:money_project/app/inserts/pages/menu_remove_page.dart';
 
 class InsertsModule extends Module {
   @override
@@ -23,8 +25,16 @@ class InsertsModule extends Module {
       child: (context, args) => ListInsertsPage(),
     ),
     ChildRoute(
-      '/listRemoveInserts',
+      '/menuremove',
+      child: (context, args) => MenuRemovePage(),
+    ),
+    ChildRoute(
+      '/singleremove',
       child: (context, args) => ListRemovePage(),
+    ),
+    ChildRoute(
+      '/allremove',
+      child: (context, args) => ListRemoveAllPage(),
     ),
   ];
 }

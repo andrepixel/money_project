@@ -44,7 +44,7 @@ class _FieldMultipleChoicesWidgetState
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 wordSpacing: 0.2,
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
           ),

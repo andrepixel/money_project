@@ -21,18 +21,16 @@ class ArticlesPage extends StatelessWidget {
               onTap: () => Modular.to.pushNamed("article/0"),
               child: ArticleHandler(
                 pathImage: "assets/images/article_image_1.png",
-                title:
-                    "O que é Educação Financeira?",
+                title: "O que é Educação Financeira?",
                 boxFit: BoxFit.cover,
-                colorBackground: Colors.black,
+                colorBackground: Colors.black87,
               ),
             ),
             GestureDetector(
               onTap: () => Modular.to.pushNamed("article/1"),
               child: ArticleHandler(
                 pathImage: "assets/images/article_image_2.png",
-                title:
-                    "2 Dicas para ajudar\nno seu investimento",
+                title: "2 Dicas para ajudar\nno seu investimento",
                 boxFit: BoxFit.contain,
                 colorBackground: Colors.blue,
               ),
@@ -95,7 +93,7 @@ class ArticleHandler extends StatelessWidget {
                       12.0,
                     ),
                     child: SizedBox(
-                      height: 30,
+                      height: 40,
                       child: Text(
                         title,
                         textAlign: TextAlign.center,

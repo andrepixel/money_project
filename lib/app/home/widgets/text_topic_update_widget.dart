@@ -29,7 +29,7 @@ class TextTopicUpdateWidget extends StatelessWidget {
                   Icon(
                     Icons.circle,
                     size: 8,
-                    color: Colors.black,
+                    color: Colors.black87,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -60,7 +60,7 @@ class TextTopicUpdateWidget extends StatelessWidget {
                       Icon(
                         Icons.circle,
                         size: 8,
-                        color: Colors.black,
+                        color: Colors.black87,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(

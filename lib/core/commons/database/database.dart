@@ -12,6 +12,7 @@ class Database extends ChangeNotifier {
 
   void openDatabase() async {
     if (sharedPreferences.containsKey("2022")) {
+      print(sharedPreferences.getString("2022"));
     } else {
       sharedPreferences.setString("2022",
           '{"Janeiro": {},"Fevereiro": {},"Março": {},"Abril": {},"Maio": {},"Junho": {},"Julho": {},"Agosto": {},"Setembro": {},"Outubro": {},"Novembro": {},"Dezembro": {}}');
@@ -72,16 +73,69 @@ class Database extends ChangeNotifier {
     return text;
   }
 
-  void removeData({
+  Future<bool> removeInsertion({
+    required String year,
+    required String itemName,
+  }) async {
+    String values = sharedPreferences.getString(year) ?? "";
+
+    if (values.contains('"${itemName}":')) {
+      values = values.replaceAll(
+        RegExp('"${itemName}": "(\\d)*",'),
+        '',
+      );
+
+      values = values.replaceAll(
+        RegExp(',"${itemName}": "(\\d)*"'),
+        '',
+      );
+
+      values = values.replaceAll(
+        RegExp('"${itemName}": "(\\d)*"'),
+        '',
+      );
+
+      values = values.replaceAll(
+        RegExp('"${itemName}": "-(\\d)*",'),
+        '',
+      );
+
+      values = values.replaceAll(
+        RegExp(',"${itemName}": "-(\\d)*"'),
+        '',
+      );
+
+      values = values.replaceAll(
+        RegExp('"${itemName}": "-(\\d)*"'),
+        '',
+      );
+
+      await sharedPreferences.remove(year);
+      await sharedPreferences.setString(year, values);
+
+      return true;
+    }
+
+    return false;
+  }
+
+  Future<bool> removeInsertions({
     required String year,
     required String month,
-  }) {
-    var values = sharedPreferences.getString(year) ?? "";
+  }) async {
+    String values = sharedPreferences.getString(year) ?? "";
 
-    values =
-        values.replaceAll(RegExp('"$month\": ({[^{}]+})'), '"$month\": {}');
+    if (values.contains(RegExp('"${month}": ({[^{}]+})'))) {
+      values = values.replaceAll(
+        RegExp('"${month}": ({[^{}]+})'),
+        '"${month}": {}',
+      );
 
-    sharedPreferences.remove(year);
-    sharedPreferences.setString(year, values);
+      await sharedPreferences.remove(year);
+      await sharedPreferences.setString(year, values);
+
+      return true;
+    }
+    return false;
   }
 }
